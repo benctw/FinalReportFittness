@@ -13,7 +13,7 @@ def call_service(event):
             actions=[
                 MessageAction(
                     label='跑步機',
-                    text='我想知道跑步怎麼用'
+                    text='我想知道跑步機怎麼用'
                 ),
                 MessageAction(
                     label='滑步機',

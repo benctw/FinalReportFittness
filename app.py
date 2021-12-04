@@ -94,17 +94,33 @@ def handle_something(event):
     if event.message.type=='text':
         recrive_text=event.message.text
         # print(recrive_text)
-        if '服務' in recrive_text:
+        if '介紹' in recrive_text:
             # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
             call_service(event)
-        elif '索取備品' in recrive_text:
-            ask_tower_or_something(event)
+        elif '我想知道跑步機怎麼用' in recrive_text:
+            messages=[]
+            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/H8O5GVT.png', preview_image_url='https://i.imgur.com/JM2MHSi.png'))
+            messages.append(TextSendMessage(text='站上去按開始'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)  
+        elif '我想知道滑步機怎麼用' in recrive_text:
+            messages=[]
+            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/H8O5GVT.png', preview_image_url='https://i.imgur.com/JM2MHSi.png'))
+            messages.append(TextSendMessage(text='這次入住的是中央飯店的經典客房，客房裝潢以溫暖的大地色系為基調，簡約時尚的設計風格，搭配大片落地玻璃窗，讓自然陽光灑入，住客能在舒適的房間內，遠眺樹海美景及飽覽中壢都會景觀。簡潔俐落的線條經過細節化處理，呈現客房空間設計的時尚氛圍及本真之美。'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages) 
+        elif '我想知道划船機怎麼用' in recrive_text:
+            messages=[]
+            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/H8O5GVT.png', preview_image_url='https://i.imgur.com/JM2MHSi.png'))
+            messages.append(TextSendMessage(text='這次入住的是中央飯店的經典客房，客房裝潢以溫暖的大地色系為基調，簡約時尚的設計風格，搭配大片落地玻璃窗，讓自然陽光灑入，住客能在舒適的房間內，遠眺樹海美景及飽覽中壢都會景觀。簡潔俐落的線條經過細節化處理，呈現客房空間設計的時尚氛圍及本真之美。'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages) 
         elif '客房介紹' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/H8O5GVT.png', preview_image_url='https://i.imgur.com/JM2MHSi.png'))
             messages.append(TextSendMessage(text='這次入住的是中央飯店的經典客房，客房裝潢以溫暖的大地色系為基調，簡約時尚的設計風格，搭配大片落地玻璃窗，讓自然陽光灑入，住客能在舒適的房間內，遠眺樹海美景及飽覽中壢都會景觀。簡潔俐落的線條經過細節化處理，呈現客房空間設計的時尚氛圍及本真之美。'))
             messages.append(another_service_or_not)
-            line_bot_api.reply_message(event.reply_token, messages)  
+            line_bot_api.reply_message(event.reply_token, messages)
         elif '美食地圖' in recrive_text:
             call_food(event)
         elif '中式餐點小吃' in recrive_text:

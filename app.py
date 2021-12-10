@@ -6,6 +6,7 @@ from linebot.models import events
 from line_chatbot_api import *
 from service_actions.service import *
 from service_actions.food import *
+from service_actions.introduction import *
 
 # create flask server
 app = Flask(__name__)

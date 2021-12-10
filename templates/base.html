@@ -10,6 +10,16 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Fittness</a>
+          <div class="container-fluid">
+            <span class="navbar-text">
+              AI x Line Bot
+            </span>
+          </div>
+        </div>
+    </nav>
     {% block message %}{% endblock %}
     <script src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
 </body>

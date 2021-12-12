@@ -6,11 +6,11 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Carousel Template · Bootstrap v5.1</title>
+    <title>Fittness</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
 
-    
+
 
     <!-- Bootstrap core CSS -->
 <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
@@ -31,35 +31,20 @@
       }
     </style>
 
-    
+
     <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='css/carousel.css') }}" rel="stylesheet">
   </head>
   <body>
-    
+
 <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Carousel</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-          </li>
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+      <a class="navbar-brand">Fittness</a>
+      <div class="container-fluid">
+        <span class="navbar-text">
+          AI x Line Bot
+        </span>
       </div>
     </div>
   </nav>
@@ -79,9 +64,8 @@
 
         <div class="container">
           <div class="carousel-caption text-start">
-            <h1>Example headline.</h1>
-            <p>Some representative placeholder content for the first slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+            <h1>機器操作教學</h1>
+            <p>教會你使用各種健身器材</p>
           </div>
         </div>
       </div>
@@ -90,9 +74,8 @@
 
         <div class="container">
           <div class="carousel-caption">
-            <h1>Another example headline.</h1>
-            <p>Some representative placeholder content for the second slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+            <h1>BMI</h1>
+            <p>數值計算</p>
           </div>
         </div>
       </div>
@@ -101,9 +84,8 @@
 
         <div class="container">
           <div class="carousel-caption text-end">
-            <h1>One more for good measure.</h1>
-            <p>Some representative placeholder content for the third slide of this carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+            <h1>健身菜單推薦</h1>
+            <p>AI 找出適合你的健身菜單組合</p>
           </div>
         </div>
       </div>
@@ -118,46 +100,98 @@
     </button>
   </div>
 
-
   <!-- Marketing messaging and featurettes
   ================================================== -->
+
+  <ul class="nav justify-content-center">
+    <class="nav-item">
+      <a class="nav-link active" aria-current="page"><h1><span class="badge bg-secondary">製作團隊</span></h1>
+      </a>
+  </ul>
+  
+  <br></br>
+
   <!-- Wrap the rest of the page in another container to center all the content. -->
 
   <div class="container marketing">
 
     <!-- Three columns of text below the carousel -->
+    
     <div class="row">
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
-        <h2>Heading</h2>
-        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+      <div class="col-lg-3" style="text-align: center;">
+        <img class="bd-placeholder-img rounded-circle" src="{{url_for('static', filename='images/ckchang.jpg')}}" width="140" height="140">
+        <br></br>
+        <h2>張家凱</h2>
+        <p>指導老師</p>
+        <br></br>
       </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
+      <div class="col-lg-3" style="text-align: center;">
         <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
-        <h2>Heading</h2>
-        <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        <br></br>
+        <h2>胡雅治</h2>
+        <p>伺服器及程式框架整合</p>
+        <br></br>
       </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
+      <div class="col-lg-3" style="text-align: center;">
         <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
-        <h2>Heading</h2>
-        <p>And lastly this, the third column of representative placeholder content.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        <br></br>
+        <h2>石昀翰</h2>
+        <p>網站撰寫</p>
+        <br></br>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-3" style="text-align: center;">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <br></br>
+        <h2>楊芬瑜</h2>
+        <p>Line Bot 功能 - BMI計算</p>
+        <br></br>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-3" style="text-align: center;">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <br></br>
+        <h2>吳孟璇</h2>
+        <p>Line Bot 功能 - 飲食推薦</p>
+        <br></br>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-3" style="text-align: center;">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <br></br>
+        <h2>曾崇傑</h2>
+        <p>Line Bot 功能 - 機器操作</p>
+        <br></br>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-3" style="text-align: center;">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <br></br>
+        <h2>彭俊銘</h2>
+        <p>Line Bot 功能 - 健身菜單推薦</p>
+        <br></br>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-3" style="text-align: center;">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <br></br>
+        <h2>黃家姮</h2>
+        <p> Line Bot 功能 - 跟我聊天</p>
+        <br></br>
       </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
 
-
     <!-- START THE FEATURETTES -->
 
-    <hr class="featurette-divider">
+
+    <br></br>
+
+    <ul class="nav justify-content-center">
+      <class="nav-item">
+        <a class="nav-link active" aria-current="page"><h1><span class="badge bg-secondary">Line Bot 功能介紹</span></h1>
+        </a>
+    </ul>
+
+    <br></br>
 
     <div class="row featurette">
       <div class="col-md-7">
-        <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
+        <h2 class="featurette-heading">BMI ｜ <span class="text-muted">數值計算與評估</span></h2>
         <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
       </div>
       <div class="col-md-5">
@@ -170,7 +204,7 @@
 
     <div class="row featurette">
       <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
+        <h2 class="featurette-heading">健身器材 ｜ <span class="text-muted">介紹與操作教學</span></h2>
         <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
       </div>
       <div class="col-md-5 order-md-1">
@@ -183,7 +217,33 @@
 
     <div class="row featurette">
       <div class="col-md-7">
-        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+        <h2 class="featurette-heading">健身菜單推薦<span class="text-muted"></span></h2>
+        <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+      </div>
+      <div class="col-md-5">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">飲食推薦<span class="text-muted"></span></h2>
+        <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">累了嗎 ｜ <span class="text-muted">來聊天吧</span></h2>
         <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
       </div>
       <div class="col-md-5">
@@ -201,14 +261,15 @@
 
   <!-- FOOTER -->
   <footer class="container">
-    <p class="float-end"><a href="#">Back to top</a></p>
-    <p>&copy; 2017–2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    <p class="float-end"><a href="/"><button type="button" class="btn btn-outline-primary">Back to top</button></a></p>
+
+    <p>&copy; 2017–2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="/">Terms</a></p>
   </footer>
 </main>
 
 
     <script src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
 
-      
+
   </body>
 </html>

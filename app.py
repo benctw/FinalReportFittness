@@ -1,4 +1,5 @@
 # import flask related
+import re
 from flask import Flask, request, abort, url_for, render_template
 from urllib.parse import parse_qsl, parse_qs
 import random
@@ -6,6 +7,7 @@ from linebot.models import events
 from line_chatbot_api import *
 from service_actions.service import *
 from service_actions.food import *
+from service_actions.BMI import *
 
 # create flask server
 app = Flask(__name__)
@@ -115,12 +117,8 @@ def handle_something(event):
             messages.append(TextSendMessage(text='這次入住的是中央飯店的經典客房，客房裝潢以溫暖的大地色系為基調，簡約時尚的設計風格，搭配大片落地玻璃窗，讓自然陽光灑入，住客能在舒適的房間內，遠眺樹海美景及飽覽中壢都會景觀。簡潔俐落的線條經過細節化處理，呈現客房空間設計的時尚氛圍及本真之美。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages) 
-        elif '客房介紹' in recrive_text:
-            messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/H8O5GVT.png', preview_image_url='https://i.imgur.com/JM2MHSi.png'))
-            messages.append(TextSendMessage(text='這次入住的是中央飯店的經典客房，客房裝潢以溫暖的大地色系為基調，簡約時尚的設計風格，搭配大片落地玻璃窗，讓自然陽光灑入，住客能在舒適的房間內，遠眺樹海美景及飽覽中壢都會景觀。簡潔俐落的線條經過細節化處理，呈現客房空間設計的時尚氛圍及本真之美。'))
-            messages.append(another_service_or_not)
-            line_bot_api.reply_message(event.reply_token, messages)
+        elif '計算BMI' in recrive_text:
+            call_BMI(event)
         elif '美食地圖' in recrive_text:
             call_food(event)
         elif '中式餐點小吃' in recrive_text:
@@ -133,10 +131,7 @@ def handle_something(event):
             messages.append(TextSendMessage(text='中央飯店正努力撰寫程式碼中，請稍後再回來查看此功能~ 謝謝您~'))
             line_bot_api.reply_message(event.reply_token, messages)
         else:
-            messages=[]
-            messages.append(StickerSendMessage(package_id=789, sticker_id=10882))
-            messages.append(TextSendMessage(text='抱歉我沒聽懂~ 可以用其他方式再說一次嗎?'))
-            line_bot_api.reply_message(event.reply_token, messages)
+            calculate_BMI(event,recrive_text)
     elif event.message.type=='sticker':
         receive_sticker_id=event.message.sticker_id
         receive_package_id=event.message.package_id

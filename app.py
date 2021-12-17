@@ -5,9 +5,8 @@ from urllib.parse import parse_qsl, parse_qs
 import random
 from linebot.models import events
 from line_chatbot_api import *
-from service_actions.service import *
-from service_actions.food import *
 from service_actions.BMI import *
+from service_actions.introduction import *
 
 # create flask server
 app = Flask(__name__)
@@ -81,14 +80,12 @@ def handle_postback(event):
         messages.append(TextSendMessage(text=f'{user_name}, 好的沒問題, 櫃台服務人員將盡快幫您準備{postback_data.get("item", "")}'))
         messages.append(another_service_or_not)
         line_bot_api.reply_message(event.reply_token, messages)
-    elif postback_data.get('action')=='還需要服務':
-        call_service(event)
-    elif postback_data.get('action')=='food':
-        show_food(event, json.loads(postback_data.get('item', '')))   
-    elif postback_data.get('action')=='暫時先不用其他服務':
+    elif postback_data.get('action')=='還需要其他介紹':
+        call_service(event)  
+    elif postback_data.get('action')=='暫時先不用其他介紹':
         messages=[]
         messages.append(StickerSendMessage(package_id=11537, sticker_id=52002734))
-        messages.append(TextSendMessage(text='祝您有愉快的住宿體驗'))
+        messages.append(TextSendMessage(text='祝您有愉快的健身體驗'))
         line_bot_api.reply_message(event.reply_token, messages)
 
 @handler.add(MessageEvent)
@@ -102,34 +99,23 @@ def handle_something(event):
         elif '我想知道跑步機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/H8O5GVT.png', preview_image_url='https://i.imgur.com/JM2MHSi.png'))
-            messages.append(TextSendMessage(text='站上去按開始'))
+            messages.append(TextSendMessage(text='跑步機介紹待定'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)  
         elif '我想知道滑步機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/H8O5GVT.png', preview_image_url='https://i.imgur.com/JM2MHSi.png'))
-            messages.append(TextSendMessage(text='這次入住的是中央飯店的經典客房，客房裝潢以溫暖的大地色系為基調，簡約時尚的設計風格，搭配大片落地玻璃窗，讓自然陽光灑入，住客能在舒適的房間內，遠眺樹海美景及飽覽中壢都會景觀。簡潔俐落的線條經過細節化處理，呈現客房空間設計的時尚氛圍及本真之美。'))
+            messages.append(TextSendMessage(text='滑步機介紹待定'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages) 
         elif '我想知道划船機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/H8O5GVT.png', preview_image_url='https://i.imgur.com/JM2MHSi.png'))
-            messages.append(TextSendMessage(text='這次入住的是中央飯店的經典客房，客房裝潢以溫暖的大地色系為基調，簡約時尚的設計風格，搭配大片落地玻璃窗，讓自然陽光灑入，住客能在舒適的房間內，遠眺樹海美景及飽覽中壢都會景觀。簡潔俐落的線條經過細節化處理，呈現客房空間設計的時尚氛圍及本真之美。'))
+            messages.append(TextSendMessage(text='划船機機介紹待定'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages) 
         elif '計算BMI' in recrive_text:
             call_BMI(event)
-        elif '美食地圖' in recrive_text:
-            call_food(event)
-        elif '中式餐點小吃' in recrive_text:
-            call_Chinese_food(event)
-        elif '西式餐點小吃' in recrive_text:
-            call_western_food(event)
-        elif '生態導覽' in recrive_text:
-            messages=[]
-            messages.append(StickerSendMessage(package_id=446, sticker_id=2000))
-            messages.append(TextSendMessage(text='中央飯店正努力撰寫程式碼中，請稍後再回來查看此功能~ 謝謝您~'))
-            line_bot_api.reply_message(event.reply_token, messages)
         else:
             calculate_BMI(event,recrive_text)
     elif event.message.type=='sticker':
@@ -158,17 +144,17 @@ def handle_something(event):
 another_service_or_not = TemplateSendMessage(
     alt_text='Confirm template',
     template=ConfirmTemplate(
-        text='請問還需要其他服務嗎?',
+        text='請問還需要其他介紹嗎?',
         actions=[
             PostbackAction(
-                label='還需要服務',
-                display_text='還需要服務',
-                data='action=還需要服務'
+                label='還需要其他介紹',
+                display_text='還需要其他介紹',
+                data='action=還需要其他介紹'
             ),
             PostbackAction(
                 label='暫時先不用',
                 display_text='暫時先不用',
-                data='action=暫時先不用其他服務'
+                data='action=暫時先不用其他介紹'
             )
         ]
     )

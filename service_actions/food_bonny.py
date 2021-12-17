@@ -325,9 +325,9 @@ service_or_not= TemplateSendMessage(
                     data='action=還需要'
                 ),
                 PostbackAction(
-                    label='暫時先不用',
+                    label='先不用喔!',
                     display_text='這樣就好，謝謝!',
-                    data='action=暫時先不用'
+                    data='action=先不用喔!'
                 )
             ]
         )

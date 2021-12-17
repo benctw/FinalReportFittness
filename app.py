@@ -152,10 +152,10 @@ def handle_postback(event):
             line_bot_api.reply_message(event.reply_token, messages)
             
     elif postback_data.get('action')=='還需要':
-        all_service(event)  
+        food_service(event)  
     elif postback_data.get('action')=='再來一個吧':
         recommend_choice(event)  
-    elif postback_data.get('action')=='暫時先不用':
+    elif postback_data.get('action')=='先不用喔!':
         messages=[]
         messages.append(StickerSendMessage(package_id=8522, sticker_id=16581266))
         messages.append(TextSendMessage(text='不用客氣，很高興為您服務!'))

@@ -82,14 +82,14 @@ def handle_postback(event):
         messages.append(TextSendMessage(text=f'{user_name}, 好的沒問題, 櫃台服務人員將盡快幫您準備{postback_data.get("item", "")}'))
         messages.append(another_service_or_not)
         line_bot_api.reply_message(event.reply_token, messages)
-    elif postback_data.get('action')=='還需要服務':
+    elif postback_data.get('action')=='還需要其他介紹':
         call_service(event)
     elif postback_data.get('action')=='food':
         show_food(event, json.loads(postback_data.get('item', '')))   
-    elif postback_data.get('action')=='暫時先不用其他服務':
+    elif postback_data.get('action')=='暫時先不用其他介紹':
         messages=[]
         messages.append(StickerSendMessage(package_id=11537, sticker_id=52002734))
-        messages.append(TextSendMessage(text='祝您有愉快的住宿體驗'))
+        messages.append(TextSendMessage(text='祝您有愉快的健身體驗'))
         line_bot_api.reply_message(event.reply_token, messages)
 
 @handler.add(MessageEvent)
@@ -159,17 +159,17 @@ def handle_something(event):
 another_service_or_not = TemplateSendMessage(
     alt_text='Confirm template',
     template=ConfirmTemplate(
-        text='請問還需要其他服務嗎?',
+        text='請問還需要其他介紹嗎?',
         actions=[
             PostbackAction(
-                label='還需要服務',
-                display_text='還需要服務',
-                data='action=還需要服務'
+                label='還需要其他介紹',
+                display_text='還需要其他介紹',
+                data='action=還需要其他介紹'
             ),
             PostbackAction(
                 label='暫時先不用',
                 display_text='暫時先不用',
-                data='action=暫時先不用其他服務'
+                data='action=暫時先不用其他介紹'
             )
         ]
     )

@@ -93,7 +93,7 @@ def handle_something(event):
     if event.message.type=='text':
         recrive_text=event.message.text
         # print(recrive_text)
-        if '介紹' in recrive_text:
+        if '器材操作說明' in recrive_text:
             # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
             call_service(event)
         elif '我想知道跑步機怎麼用' in recrive_text:

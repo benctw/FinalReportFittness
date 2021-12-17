@@ -4,7 +4,7 @@ from line_chatbot_api import *
 
 
 
-def all_service(event):
+def food_service(event):
     message = TemplateSendMessage(
         alt_text='Buttons template',
         template=ButtonsTemplate(

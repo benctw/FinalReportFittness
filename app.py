@@ -144,7 +144,7 @@ def handle_something(event):
 another_service_or_not = TemplateSendMessage(
     alt_text='Confirm template',
     template=ConfirmTemplate(
-        text='請問還需要其他介紹嗎?',
+        text='請問還需要其他機器的介紹嗎?',
         actions=[
             PostbackAction(
                 label='還需要',

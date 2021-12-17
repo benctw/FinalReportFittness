@@ -4,7 +4,7 @@ from line_chatbot_api import *
 
 def call_BMI(event):
     messages = []
-    messages.append(TextSendMessage(text='請分別輸入身高(cm)和體重(kg)並用空格隔開'))
+    messages.append(TextSendMessage(text='輸入身高(cm)和體重(kg)並用空格隔開，小幫手可以幫你計算BMI哦'))
     
     line_bot_api.reply_message(event.reply_token, messages)
 

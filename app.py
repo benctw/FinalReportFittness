@@ -201,7 +201,7 @@ def handle_something(event):
             line_bot_api.reply_message(event.reply_token, messages) 
 
         elif '飲食推薦' in recrive_text:
-            all_service(event)
+            food_service(event)
         elif '想來點你推薦的餐點' in recrive_text:
             recommend_choice(event)
         elif '想知道一些小建議' in recrive_text:

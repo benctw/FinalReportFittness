@@ -151,7 +151,7 @@ def handle_postback(event):
             messages.append(another_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
             
-    elif postback_data.get('action')=='還需要':
+    elif postback_data.get('action')=='再一次食物服務':
         food_service(event)  
     elif postback_data.get('action')=='再來一個吧':
         recommend_choice(event)  

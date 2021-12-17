@@ -147,8 +147,8 @@ another_service_or_not = TemplateSendMessage(
         text='請問還需要其他介紹嗎?',
         actions=[
             PostbackAction(
-                label='還需要其他介紹',
-                display_text='還需要其他介紹',
+                label='還需要',
+                display_text='還需要',
                 data='action=還需要其他介紹'
             ),
             PostbackAction(

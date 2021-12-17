@@ -8,6 +8,7 @@ from line_chatbot_api import *
 from service_actions.service import *
 from service_actions.food import *
 from service_actions.BMI import *
+from service_actions.introduction import *
 
 # create flask server
 app = Flask(__name__)
@@ -102,19 +103,19 @@ def handle_something(event):
         elif '我想知道跑步機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/H8O5GVT.png', preview_image_url='https://i.imgur.com/JM2MHSi.png'))
-            messages.append(TextSendMessage(text='站上去按開始'))
+            messages.append(TextSendMessage(text='跑步機介紹待定'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)  
         elif '我想知道滑步機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/H8O5GVT.png', preview_image_url='https://i.imgur.com/JM2MHSi.png'))
-            messages.append(TextSendMessage(text='這次入住的是中央飯店的經典客房，客房裝潢以溫暖的大地色系為基調，簡約時尚的設計風格，搭配大片落地玻璃窗，讓自然陽光灑入，住客能在舒適的房間內，遠眺樹海美景及飽覽中壢都會景觀。簡潔俐落的線條經過細節化處理，呈現客房空間設計的時尚氛圍及本真之美。'))
+            messages.append(TextSendMessage(text='滑步機介紹待定'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages) 
         elif '我想知道划船機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/H8O5GVT.png', preview_image_url='https://i.imgur.com/JM2MHSi.png'))
-            messages.append(TextSendMessage(text='這次入住的是中央飯店的經典客房，客房裝潢以溫暖的大地色系為基調，簡約時尚的設計風格，搭配大片落地玻璃窗，讓自然陽光灑入，住客能在舒適的房間內，遠眺樹海美景及飽覽中壢都會景觀。簡潔俐落的線條經過細節化處理，呈現客房空間設計的時尚氛圍及本真之美。'))
+            messages.append(TextSendMessage(text='划船機機介紹待定'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages) 
         elif '計算BMI' in recrive_text:

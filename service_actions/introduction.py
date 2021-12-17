@@ -30,7 +30,7 @@ def call_service(event):
 
 def ask_tower_or_something(event):
     message = TemplateSendMessage(
-        alt_text='索取備品',
+        alt_text='跑步機',
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(

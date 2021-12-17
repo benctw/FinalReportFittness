@@ -5,8 +5,6 @@ from urllib.parse import parse_qsl, parse_qs
 import random
 from linebot.models import events
 from line_chatbot_api import *
-from service_actions.service import *
-from service_actions.food import *
 from service_actions.BMI import *
 from service_actions.introduction import *
 
@@ -83,9 +81,7 @@ def handle_postback(event):
         messages.append(another_service_or_not)
         line_bot_api.reply_message(event.reply_token, messages)
     elif postback_data.get('action')=='還需要其他介紹':
-        call_service(event)
-    elif postback_data.get('action')=='food':
-        show_food(event, json.loads(postback_data.get('item', '')))   
+        call_service(event)  
     elif postback_data.get('action')=='暫時先不用其他介紹':
         messages=[]
         messages.append(StickerSendMessage(package_id=11537, sticker_id=52002734))
@@ -120,17 +116,6 @@ def handle_something(event):
             line_bot_api.reply_message(event.reply_token, messages) 
         elif '計算BMI' in recrive_text:
             call_BMI(event)
-        elif '美食地圖' in recrive_text:
-            call_food(event)
-        elif '中式餐點小吃' in recrive_text:
-            call_Chinese_food(event)
-        elif '西式餐點小吃' in recrive_text:
-            call_western_food(event)
-        elif '生態導覽' in recrive_text:
-            messages=[]
-            messages.append(StickerSendMessage(package_id=446, sticker_id=2000))
-            messages.append(TextSendMessage(text='中央飯店正努力撰寫程式碼中，請稍後再回來查看此功能~ 謝謝您~'))
-            line_bot_api.reply_message(event.reply_token, messages)
         else:
             calculate_BMI(event,recrive_text)
     elif event.message.type=='sticker':

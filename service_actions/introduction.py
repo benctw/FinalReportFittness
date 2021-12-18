@@ -2,7 +2,7 @@ from urllib.parse import parse_qsl, parse_qs
 import datetime
 from line_chatbot_api import *
 
-def call_service(event):
+def call_introduction(event):
     message = TemplateSendMessage(
         alt_text='Buttons template',
         template=ButtonsTemplate(

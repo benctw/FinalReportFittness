@@ -14,16 +14,16 @@ def call_introduction(event):
                     text='請在下方點選您想知道的項目',
                     actions=[
                         PostbackAction(
-                            label='臥姿彎腿機',
-                            text='我想知道臥姿彎腿機怎麼用'
+                        label='臥姿彎腿機',
+                        display_text='我想知道臥姿彎腿機怎麼用'
                         ),
                         PostbackAction(
-                            label='背伸機',
-                            text='我想知道背伸機怎麼用'
+                        label='背伸機',
+                        display_text='我想知道背伸機怎麼用'
                         ),
                         PostbackAction(
                         label='大腿推蹬機',
-                        text='我想知道大腿推蹬機怎麼用'
+                        display_text='我想知道大腿推蹬機怎麼用'
                         )
                     ]
                 ),
@@ -34,15 +34,15 @@ def call_introduction(event):
                     actions=[
                         PostbackAction(
                         label='多功能單/雙槓輔助機',
-                        text='我想知道多功能單/雙槓輔助機怎麼用'
+                        display_text='我想知道多功能單/雙槓輔助機怎麼用'
                         ),
                         PostbackAction(
                         label='腹部前驅訓練機',
-                        text='我想知道腹部前驅訓練機怎麼用'
+                        display_text='我想知道腹部前驅訓練機怎麼用'
                         ),
                         PostbackAction(
                         label='二頭訓練機',
-                        text='我想知道二頭訓練機怎麼用'
+                        display_text='我想知道二頭訓練機怎麼用'
                         )
                     ]
                 ),
@@ -53,15 +53,15 @@ def call_introduction(event):
                     actions=[
                         PostbackAction(
                         label='腿部伸張機',
-                        text='我想知道腿部伸張機怎麼用'
+                        display_text='我想知道腿部伸張機怎麼用'
                         ),
                         PostbackAction(
                         label='腿內收機',
-                        text='我想知道腿內收機怎麼用'
+                        display_text='我想知道腿內收機怎麼用'
                         ),
                         PostbackAction(
                         label='腿內收機',
-                        text='我想知道腿內收機怎麼用'
+                        display_text='我想知道腿內收機怎麼用'
                         )
                     ]
                 )

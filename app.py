@@ -164,7 +164,7 @@ def handle_postback(event):
 
 ######################以下兩個未知#################################
     elif postback_data.get('action')=='還需要其他介紹':
-        call_service(event)  
+        call_introduction(event)  
     elif postback_data.get('action')=='暫時先不用其他介紹':
         messages=[]
         messages.append(StickerSendMessage(package_id=11537, sticker_id=52002734))
@@ -180,7 +180,7 @@ def handle_something(event):
         # print(recrive_text)
         if '器材操作說明' in recrive_text:
             # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
-            call_service(event)
+            call_introduction(event)
         elif '我想知道臥姿彎腿機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
@@ -421,7 +421,7 @@ def handle_something(event):
         # print('Transcribe:', text)
         if '服務' in text:
             # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
-            call_service(event)
+            call_introduction(event)
 
 another_service_or_not = TemplateSendMessage(
     alt_text='Confirm template',

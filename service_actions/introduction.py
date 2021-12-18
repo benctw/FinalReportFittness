@@ -7,7 +7,7 @@ def call_service(event):
         alt_text='Buttons template',
         template=ButtonsTemplate(
             # thumbnail_image_url=url_for('static', filename='images/brown_1024.jpg', _external=True),
-            thumbnail_image_url='https://mirtomo.com/wp-content/uploads/2019/08/9_4.jpg',
+            thumbnail_image_url='images/brown_1024.jpg',
             title='請問想要知道什麼設施的介紹呢?',
             text='請在下方點選您想知道的項目',
             actions=[

@@ -31,30 +31,6 @@ def call_introduction(event):
                     label='腿內收機',
                     text='我想知道腿內收機怎麼用'
                 ),
-                MessageAction(
-                    label='腿外展機',
-                    text='我想知道沝外展機怎麼用'
-                ),
-                MessageAction(
-                    label='三頭訓練機',
-                    text='我想知道三頭訓練機怎麼用'
-                ),
-                MessageAction(
-                    label='腹部旋轉機',
-                    text='我想知道腹部旋轉機怎麼用'
-                ),
-                MessageAction(
-                    label='腹部前驅訓練機',
-                    text='我想知道腹部前驅訓練機怎麼用'
-                ),
-                MessageAction(
-                    label='二頭訓練機',
-                    text='我想知道二頭訓練機怎麼用'
-                ),
-                MessageAction(
-                    label='腿部伸張機',
-                    text='我想知道腿部伸張機怎麼用'
-                )
             ]
         )
     )

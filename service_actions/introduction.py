@@ -26,11 +26,7 @@ def call_introduction(event):
                 MessageAction(
                     label='多功能單/雙槓輔助機',
                     text='我想知道多功能單/雙槓輔助機怎麼用'
-                ),
-                MessageAction(
-                    label='腿內收機',
-                    text='我想知道腿內收機怎麼用'
-                ),
+                ),,
             ]
         )
     )

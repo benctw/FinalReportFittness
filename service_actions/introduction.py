@@ -26,10 +26,10 @@ def call_introduction(event):
                 MessageAction(
                     label='多功能單/雙槓輔助機',
                     text='我想知道多功能單/雙槓輔助機怎麼用'
-                ),
+                ) 
                 MessageAction(
                     label='腿外展機',
-                    text='我想知道沝外展機怎麼用'
+                    text='我想知道腿外展機怎麼用'
                 ),
                 MessageAction(
                     label='三頭訓練機',

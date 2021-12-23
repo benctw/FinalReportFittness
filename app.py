@@ -164,7 +164,7 @@ def handle_postback(event):
 
 ######################以下兩個未知#################################
     elif postback_data.get('action')=='還需要其他介紹':
-        call_service(event)  
+        call_introduction(event)  
     elif postback_data.get('action')=='暫時先不用其他介紹':
         messages=[]
         messages.append(StickerSendMessage(package_id=11537, sticker_id=52002734))
@@ -180,26 +180,73 @@ def handle_something(event):
         # print(recrive_text)
         if '器材操作說明' in recrive_text:
             # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
-            call_service(event)
-        elif '我想知道跑步機怎麼用' in recrive_text:
+            call_introduction(event)
+        elif '我想知道臥姿彎腿機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
-            messages.append(TextSendMessage(text='跑步機介紹待定'))
+            messages.append(TextSendMessage(text='臥姿彎腿機介紹待定'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)  
-        elif '我想知道滑步機怎麼用' in recrive_text:
+        elif '我想知道背伸機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/H8O5GVT.png', preview_image_url='https://i.imgur.com/JM2MHSi.png'))
-            messages.append(TextSendMessage(text='滑步機介紹待定'))
+            messages.append(TextSendMessage(text='背伸機介紹待定'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages) 
-        elif '我想知道划船機怎麼用' in recrive_text:
+        elif '我想知道大腿推蹬機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/H8O5GVT.png', preview_image_url='https://i.imgur.com/JM2MHSi.png'))
-            messages.append(TextSendMessage(text='划船機機介紹待定'))
+            messages.append(TextSendMessage(text='大腿推蹬機介紹待定'))
             messages.append(another_service_or_not)
-            line_bot_api.reply_message(event.reply_token, messages) 
-
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '我想知道多功能單/雙槓輔助機怎麼用' in recrive_text:
+            messages=[]
+            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/H8O5GVT.png', preview_image_url='https://i.imgur.com/JM2MHSi.png'))
+            messages.append(TextSendMessage(text='多功能單/雙槓輔助機介紹待定'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '我想知道腿內收機怎麼用' in recrive_text:
+            messages=[]
+            messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
+            messages.append(TextSendMessage(text='腿內收機介紹待定'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '我想知道腿外展機怎麼用' in recrive_text:
+            messages=[]
+            messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
+            messages.append(TextSendMessage(text='腿外展機介紹待定'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '我想知道三頭訓練機怎麼用' in recrive_text:
+            messages=[]
+            messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
+            messages.append(TextSendMessage(text='三頭訓練機介紹待定'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '我想知道腹部旋轉機怎麼用' in recrive_text:
+            messages=[]
+            messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
+            messages.append(TextSendMessage(text='腹部旋轉機介紹待定'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '我想知道腹部前驅訓練機怎麼用' in recrive_text:
+            messages=[]
+            messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
+            messages.append(TextSendMessage(text='腹部前驅訓練機介紹待定'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '我想知道二頭訓練機怎麼用' in recrive_text:
+            messages=[]
+            messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
+            messages.append(TextSendMessage(text='二頭訓練機介紹待定'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '我想知道腿部伸張機怎麼用' in recrive_text:
+            messages=[]
+            messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
+            messages.append(TextSendMessage(text='腿部伸張機介紹待定'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
         elif '飲食推薦' in recrive_text:
             food_service(event)
         elif '想來點你推薦的餐點' in recrive_text:
@@ -373,7 +420,7 @@ def handle_something(event):
         # print('Transcribe:', text)
         if '服務' in text:
             # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
-            call_service(event)
+            call_introduction(event)
 
 another_service_or_not = TemplateSendMessage(
     alt_text='Confirm template',

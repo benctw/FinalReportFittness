@@ -33,15 +33,14 @@ food_diet1.append(("壹番屋-雙起司雞肉咖哩飯糰(711)","250"))
 food_diet1.append(("香檸松阪豬烤飯糰(全家)","215"))
 food_diet1.append(("炙燒牛肉飯卷(全家)","295"))
 food_diet1.append(("嫩雞花椰菜飯(711)","260"))
+food_diet1.append(("鮪魚蕃茄冷義大利麵(全家)","335"))
 food_diet1.append(("什蔬滷味(711)","290"))
 food_diet1.append(("起司火腿蛋熱壓吐司(711)","264"))
 food_diet1.append(("虱目魚粥","250"))
 
 #print(choice(food_diet))
 
-
-food_diet2=[] #300-550
-food_diet2.append(("鮪魚蕃茄冷義大利麵(全家)","335"))
+food_diet2=[]
 food_diet2.append(("榨菜肉絲麵","356"))
 food_diet2.append(("滷肉飯","350"))
 food_diet2.append(("筒仔米糕","310"))
@@ -89,7 +88,7 @@ food_diet2.append(("阜杭豆漿-經典飯糰(711)","535"))
 food_diet2.append(("大腸蚵仔麵線","460"))
 
 
-food_diet3=[] #550-800
+food_diet3=[]
 food_diet3.append(("豬排蓋飯","795"))
 food_diet3.append(("韭菜水餃10個","690"))
 food_diet3.append(("油雞便當","680"))
@@ -125,6 +124,7 @@ food_diet3.append(("沙茶豬肉飯","760"))
 food_diet3.append(("香腸便當","750"))
 food_diet3.append(("涼麵","670"))
 food_diet3.append(("蝦仁炒麵","620"))
+food_diet3.append(("大腸蚵仔麵線","460"))
 food_diet3.append(("辣味鍋貼10個","610"))
 food_diet3.append(("豚骨拉麵","620"))
 food_diet3.append(("鰻魚飯便當","670"))
@@ -140,10 +140,18 @@ food_diet3.append(("海鮮豆腐鍋","580"))
 food_diet3.append(("南部春捲","600"))
 food_diet3.append(("麻醬麵","650"))
 food_diet3.append(("番茄蝦仁義大利麵","610"))
+food_diet3.append(("豚骨拉麵620","215"))
+food_diet3.append(("豚骨拉麵620","215"))
+food_diet3.append(("豚骨拉麵620","215"))
+food_diet3.append(("豚骨拉麵620","215"))
+food_diet3.append(("豚骨拉麵620","215"))
+food_diet3.append(("豚骨拉麵620","215"))
+food_diet3.append(("豚骨拉麵620","215"))
+food_diet3.append(("豚骨拉麵620","215"))
+food_diet3.append(("豚骨拉麵620","215"))
 
 
-
-food_breakfast1=[] #0-250
+food_breakfast1=[]
 food_breakfast1.append(("鹹豆漿","185"))
 food_breakfast1.append(("原味蛋餅","236"))
 food_breakfast1.append(("原味貝果","240"))
@@ -166,7 +174,7 @@ food_breakfast1.append(("瘋狂起司三明治(全家)","232"))
 food_breakfast1.append(("地瓜乳酪麵包(全家)","220"))
 
 
-food_breakfast2=[] #250-450
+food_breakfast2=[]
 food_breakfast2.append(("起司蛋餅","270"))
 food_breakfast2.append(("蔥抓餅","398"))
 food_breakfast2.append(("鮪魚蛋餅","315"))
@@ -203,13 +211,13 @@ food_breakfast2.append(("里肌豬排佛卡夏","420"))
 food_breakfast2.append(("火腿佛卡夏","370"))
 
 
-food_breakfast3=[] #450-600
+food_breakfast3=[]
 food_breakfast3.append(("起司蛋三明治","494"))
 food_breakfast3.append(("蔥抓餅加蛋","480"))
 food_breakfast3.append(("鮪魚潛艇堡","500"))
-food_breakfast3.append(("飯糰","600"))
+food_breakfast3.append(("飯糰","620"))
 food_breakfast3.append(("鮪魚總匯","515"))
-food_breakfast3.append(("里肌總匯","600"))
+food_breakfast3.append(("里肌總匯","620"))
 food_breakfast3.append(("香雞蛋堡","450"))
 food_breakfast3.append(("卡拉雞腿蛋堡","530"))
 food_breakfast3.append(("鹹飯糰加蛋","500"))

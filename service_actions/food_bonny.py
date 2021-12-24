@@ -1,17 +1,38 @@
 from urllib.parse import parse_qsl, parse_qs
 import datetime
+from access_sqlite_db import *
 from line_chatbot_api import *
 
 
+user_kg=None
+user_cm=None
+user_age=None
 
-def food_service(event):
+def function_handle_something(event, user_data):
+    line_user_name = line_bot_api.get_profile(event.source.user_id).display_name
+    line_user_id = event.source.user_id
+    global user_kg
+    global user_cm
+    global user_age
+    user_kg = user_data[2] if user_data[2] else None
+    user_cm = user_data[3] if user_data[3] else None
+    user_age = user_data[4] if user_data[4] else None
+
+
+
+def food_service(event, data):
+    line_user_name = line_bot_api.get_profile(event.source.user_id).display_name
+    line_user_id = event.source.user_id
+    user_kg = data[2] if data[2] else 0
+    user_cm = data[3] if data[3] else 0
+    user_age = data[4] if data[4] else 0
     message = TemplateSendMessage(
         alt_text='Buttons template',
         template=ButtonsTemplate(
             # thumbnail_image_url=url_for('static', filename='images/all.png', _external=True),
             thumbnail_image_url='https://i.imgur.com/VTC5Vbq.png',
             title='請問想體驗哪項服務呢?',
-            text='點選一個吧!',
+            text='點選一個吧!\n想計算BMR可以設定完後在「問題與解答」中進行功能點選喔!',
             actions=[
                 MessageAction(
                     label='餐點推薦',
@@ -30,7 +51,12 @@ def food_service(event):
                     text='想看看其他說明'
                 )
             ]
-        )
+        ),
+        quick_reply=QuickReply(items=[
+                QuickReplyButton(action=MessageAction(label=f"體重{user_kg}公斤" if user_kg else "體重未設定", text="設定體重")),
+                QuickReplyButton(action=MessageAction(label=f"身高{user_cm}公分" if user_cm else "身高未設定", text="設定身高")),
+                QuickReplyButton(action=MessageAction(label=f"年紀{user_age}歲" if user_age else "年紀未設定", text="設定年紀"))
+                ])
     )
     line_bot_api.reply_message(event.reply_token, message)
 
@@ -325,7 +351,7 @@ service_or_not= TemplateSendMessage(
                     data='action=再一次食物服務'
                 ),
                 PostbackAction(
-                    label='先不用喔!',
+                    label='暫時先不用',
                     display_text='這樣就好，謝謝!',
                     data='action=先不用喔!'
                 )
@@ -352,5 +378,20 @@ another_or_not= TemplateSendMessage(
         )
     )
 
-
-
+count_or_not= TemplateSendMessage(
+        alt_text='Confirm template',
+        template=ConfirmTemplate(
+            text='幫你計算BMR吧!',
+            actions=[
+                MessageAction(
+                    label='生理男',
+                    text='好啊!我是男生'
+                )
+                ,
+                MessageAction(
+                    label='生理女',
+                    text='好啊!我是女生'
+                )
+            ]
+        )
+    )

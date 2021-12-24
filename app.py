@@ -2,7 +2,7 @@
 import re
 from flask import Flask, request, abort, url_for, render_template
 from urllib.parse import parse_qsl, parse_qs
-import random
+import random,os, json, sqlite3
 from linebot.models import events
 from line_chatbot_api import *
 from service_actions.BMI import *
@@ -10,6 +10,7 @@ from service_actions.introduction import *
 from service_actions.food_bonny import *
 from service_actions.allfoodlist import *
 from service_actions.encouragment import *
+from access_sqlite_db import *
 
 # create flask server
 app = Flask(__name__)
@@ -71,6 +72,10 @@ def transcribe(wav_path):
 def handle_postback(event):
     user_id = event.source.user_id
     user_name = line_bot_api.get_profile(user_id).display_name
+    user_data = read_user_data(line_user_id, line_user_name)
+    user_age=user_data[4] if user_data[4] else 0
+    user_kg=user_data[2] if user_data[2] else 0
+    user_cm=user_data[3] if user_data[3] else 0
     # print(event.postback.data)
     postback_data = dict(parse_qsl(event.postback.data))
     # print(postback_data.get('action', ''))
@@ -176,6 +181,14 @@ def handle_postback(event):
 
 @handler.add(MessageEvent)
 def handle_something(event):
+    line_user_name = line_bot_api.get_profile(event.source.user_id).display_name
+    line_user_id = event.source.user_id
+    user_data = read_user_data(line_user_id, line_user_name)
+    user_age=user_data[4] if user_data[4] else 0
+    user_kg=user_data[2] if user_data[2] else 0
+    user_cm=user_data[3] if user_data[3] else 0
+    function_handle_something(event, user_data)
+
     if event.message.type=='text':
         recrive_text=event.message.text
         # print(recrive_text)
@@ -246,6 +259,97 @@ def handle_something(event):
             answer_service(event)
         elif '想看看其他說明' in recrive_text:
             other_service(event)
+        elif '設定體重' == recrive_text:
+            update_user_action(line_user_id, 'set_kg')
+            message = TextSendMessage(text='請輸入您的體重(公斤)')
+            line_bot_api.reply_message(event.reply_token, message)
+        elif '設定身高' == recrive_text:
+            update_user_action(line_user_id, 'set_cm')
+            message = TextSendMessage(text='請輸入您的身高(公分)')
+            line_bot_api.reply_message(event.reply_token, message)
+        elif '設定年紀' == recrive_text:
+            update_user_action(line_user_id, 'set_age')
+            message = TextSendMessage(text='請輸入您的年紀(歲)')
+            line_bot_api.reply_message(event.reply_token, message)
+
+        elif '好啊!我是男生' == recrive_text:
+            if user_kg and user_cm and user_age:
+                message = TextSendMessage(text=f'BMR為{(13.7*user_kg)+(5.0*user_cm)-(6.8*user_age)+66:.1f}')
+                line_bot_api.reply_message(event.reply_token, message)
+            else:
+                message = TextSendMessage(text='請記得先設定身高, 體重, 年紀喔~',quick_reply=QuickReply(items=[
+                                                QuickReplyButton(action=MessageAction(label=f"體重{user_kg}公斤" if user_kg else "體重未設定", text="設定體重")),
+                                                QuickReplyButton(action=MessageAction(label=f"身高{user_cm}公分" if user_cm else "身高未設定", text="設定身高")),
+                                                QuickReplyButton(action=MessageAction(label=f"年紀{user_age}歲" if user_age else "年紀未設定", text="設定年紀"))
+                                                ]))
+                line_bot_api.reply_message(event.reply_token, message)
+
+        elif '好啊!我是女生' == recrive_text:
+            if user_kg and user_cm and user_age:
+                message = TextSendMessage(text=f'BMR為{(9.6*user_kg)+(1.8*user_cm)-(4.7*user_age)+655:.1f}')
+                line_bot_api.reply_message(event.reply_token, message)
+            else:
+                message = TextSendMessage(text='請記得先設定身高, 體重, 年紀喔~',quick_reply=QuickReply(items=[
+                                                QuickReplyButton(action=MessageAction(label=f"體重{user_kg}公斤" if user_kg else "體重未設定", text="設定體重")),
+                                                QuickReplyButton(action=MessageAction(label=f"身高{user_cm}公分" if user_cm else "身高未設定", text="設定身高")),
+                                                QuickReplyButton(action=MessageAction(label=f"年紀{user_age}歲" if user_age else "年紀未設定", text="設定年紀"))
+                                                ]))
+                line_bot_api.reply_message(event.reply_token, message)
+
+        elif read_user_action(line_user_id):
+            user_action = read_user_action(line_user_id)
+            if user_action == 'set_kg':
+                if recrive_text.isnumeric():
+                    update_user_kg(line_user_id, recrive_text)
+                    update_user_action(line_user_id, '')
+                    user_data = read_user_data(line_user_id, line_user_name)
+                    user_kg = user_data[2] if user_data[2] else None
+                    user_cm = user_data[3] if user_data[3] else None
+                    user_age = user_data[4] if user_data[4] else None
+                    message = TextSendMessage(text='體重設定成功',
+                                            quick_reply=QuickReply(items=[
+                                                QuickReplyButton(action=MessageAction(label=f"體重{user_kg}公斤" if user_kg else "體重未設定", text="設定體重")),
+                                                QuickReplyButton(action=MessageAction(label=f"身高{user_cm}公分" if user_cm else "身高未設定", text="設定身高")),
+                                                QuickReplyButton(action=MessageAction(label=f"年紀{user_age}歲" if user_age else "年紀未設定", text="設定年紀"))
+                                                ]))
+                else:
+                    message = TextSendMessage(text='請輸入數字')
+                line_bot_api.reply_message(event.reply_token, message)
+            elif user_action == 'set_cm':
+                if recrive_text.isnumeric():
+                    update_user_cm(line_user_id, recrive_text)
+                    update_user_action(line_user_id, '')
+                    user_data = read_user_data(line_user_id, line_user_name)
+                    user_kg = user_data[2] if user_data[2] else None
+                    user_cm = user_data[3] if user_data[3] else None
+                    user_age = user_data[4] if user_data[4] else None
+                    message = TextSendMessage(text='身高設定成功',
+                                            quick_reply=QuickReply(items=[
+                                                QuickReplyButton(action=MessageAction(label=f"體重{user_kg}公斤" if user_kg else "體重未設定", text="設定體重")),
+                                                QuickReplyButton(action=MessageAction(label=f"身高{user_cm}公分" if user_cm else "身高未設定", text="設定身高")),
+                                                QuickReplyButton(action=MessageAction(label=f"年紀{user_age}歲" if user_age else "年紀未設定", text="設定年紀"))
+                                                ]))
+                else:
+                    message = TextSendMessage(text='請輸入數字')
+                line_bot_api.reply_message(event.reply_token, message)
+            elif user_action == 'set_age':
+                if recrive_text.isnumeric():
+                    update_user_age(line_user_id, recrive_text)
+                    update_user_action(line_user_id, '')
+                    user_data = read_user_data(line_user_id, line_user_name)
+                    user_kg = user_data[2] if user_data[2] else None
+                    user_cm = user_data[3] if user_data[3] else None
+                    user_age = user_data[4] if user_data[4] else None
+                    message = TextSendMessage(text='年紀設定成功',
+                                            quick_reply=QuickReply(items=[
+                                                QuickReplyButton(action=MessageAction(label=f"體重{user_kg}公斤" if user_kg else "體重未設定", text="設定體重")),
+                                                QuickReplyButton(action=MessageAction(label=f"身高{user_cm}公分" if user_cm else "身高未設定", text="設定身高")),
+                                                QuickReplyButton(action=MessageAction(label=f"年紀{user_age}歲" if user_age else "年紀未設定", text="設定年紀"))
+                                                ]))
+                else:
+                    message = TextSendMessage(text='請輸入數字')
+                line_bot_api.reply_message(event.reply_token, message)
+        
 
         elif '想知道有關增肌階段的建議' in recrive_text:
             messages=[]

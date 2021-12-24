@@ -41,8 +41,8 @@ def call_introduction(event):
                         display_text='我想知道腿外展機怎麼用'
                         ),
                         MessageAction(
-                        label='三頭訓練機',
-                        display_text='我想知道三頭訓練機怎麼用'
+                        label='腿部伸張機',
+                        display_text='我想知道腿部伸張機怎麼用'
                         )
                     ]
                 ),
@@ -60,8 +60,8 @@ def call_introduction(event):
                         display_text='我想知道二頭訓練機怎麼用'
                         ),
                         MessageAction(
-                        label='腿部伸張機',
-                        display_text='我想知道腿部伸張機怎麼用'
+                        label='三頭訓練機',
+                        display_text='我想知道三頭訓練機怎麼用'
                         )
                     ]
                 )

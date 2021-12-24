@@ -9,6 +9,7 @@ from service_actions.BMI import *
 from service_actions.introduction import *
 from service_actions.food_bonny import *
 from service_actions.allfoodlist import *
+from service_actions.encouragment import *
 
 # create flask server
 app = Flask(__name__)
@@ -385,6 +386,9 @@ def handle_something(event):
             messages.append(TextSendMessage(text='避免：\n1.甜度要小心(全糖200卡半糖100卡微糖60卡)\n2.少選酸的飲料，製程會添加更多的糖\n3.珍珠、粉圓、芋圓等澱粉配料少選'))
             messages.append(service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
+
+        elif '給我溫暖' in recrive_text:
+            encouragment_templet(event)
             
         elif '計算BMI' in recrive_text:
             call_BMI(event)

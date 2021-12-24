@@ -181,7 +181,8 @@ def handle_something(event):
         # print(recrive_text)
         if '器材操作說明' in recrive_text:
             # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
-            call_introduction(event)
+            #call_introduction(event)
+            food_service(event)
         elif '我想知道臥姿彎腿機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
@@ -381,15 +382,6 @@ def handle_something(event):
             call_BMI(event)
         else:
             calculate_BMI(event,recrive_text)
-
-
-
-
-
-
-
-
-
 
     elif event.message.type=='sticker':
         receive_sticker_id=event.message.sticker_id

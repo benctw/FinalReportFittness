@@ -70,8 +70,8 @@ def transcribe(wav_path):
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
-    user_id = event.source.user_id
-    user_name = line_bot_api.get_profile(user_id).display_name
+    line_user_name = line_bot_api.get_profile(event.source.user_id).display_name
+    line_user_id = event.source.user_id
     user_data = read_user_data(line_user_id, line_user_name)
     user_age=user_data[4] if user_data[4] else 0
     user_kg=user_data[2] if user_data[2] else 0

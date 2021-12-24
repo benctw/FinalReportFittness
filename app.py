@@ -158,7 +158,7 @@ def handle_postback(event):
             line_bot_api.reply_message(event.reply_token, messages)
             
     elif postback_data.get('action')=='再一次食物服務':
-        food_service(event, data) 
+        food_service(event, user_data) 
     elif postback_data.get('action')=='再來一個吧':
         recommend_choice(event)  
     elif postback_data.get('action')=='先不用喔!':
@@ -251,7 +251,7 @@ def handle_something(event):
             line_bot_api.reply_message(event.reply_token, messages)
 
         elif '飲食推薦' in recrive_text:
-            food_service(event, data)
+            food_service(event, user_data)
         elif '想來點你推薦的餐點' in recrive_text:
             recommend_choice(event)
         elif '想知道一些小建議' in recrive_text:

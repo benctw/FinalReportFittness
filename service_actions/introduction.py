@@ -15,15 +15,15 @@ def call_introduction(event):
                     actions=[
                         MessageAction(
                         label='臥姿彎腿機',
-                        display_text='我想知道臥姿彎腿機怎麼用'
+                        text='我想知道臥姿彎腿機怎麼用'
                         ),
                         MessageAction(
                         label='背伸機',
-                        display_text='我想知道背伸機怎麼用'
+                        text='我想知道背伸機怎麼用'
                         ),
                         MessageAction(
                         label='大腿推蹬機',
-                        display_text='我想知道大腿推蹬機怎麼用'
+                        text='我想知道大腿推蹬機怎麼用'
                         )
                     ]
                 ),
@@ -34,15 +34,15 @@ def call_introduction(event):
                     actions=[
                         MessageAction(
                         label='腿內收機',
-                        display_text='我想知道腿內收機怎麼用'
+                        text='我想知道腿內收機怎麼用'
                         ),
                         MessageAction(
                         label='腿外展機',
-                        display_text='我想知道腿外展機怎麼用'
+                        text='我想知道腿外展機怎麼用'
                         ),
                         MessageAction(
                         label='腿部伸張機',
-                        display_text='我想知道腿部伸張機怎麼用'
+                        text='我想知道腿部伸張機怎麼用'
                         )
                     ]
                 ),
@@ -53,15 +53,15 @@ def call_introduction(event):
                     actions=[
                         MessageAction(
                         label='腹部旋轉機',
-                        display_text='我想知道腹部旋轉機怎麼用'
+                        text='我想知道腹部旋轉機怎麼用'
                         ),
                         MessageAction(
                         label='二頭訓練機',
-                        display_text='我想知道二頭訓練機怎麼用'
+                        text='我想知道二頭訓練機怎麼用'
                         ),
                         MessageAction(
                         label='三頭訓練機',
-                        display_text='我想知道三頭訓練機怎麼用'
+                        text='我想知道三頭訓練機怎麼用'
                         )
                     ]
                 )

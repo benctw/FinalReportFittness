@@ -1,10 +1,11 @@
-{% extends 'base.html' %}
+{%include 'header.html'%}
 
-{% block title %}
-Page not found
-{% endblock %}
+<main class="my-auto p-5" id="content">
+    <div class="text-center py-5">
+  <h1 class="display-1">404</h1>
+  <h2>File not found</h2>
+</div>
 
-{% block message %}
-<h1>找不到網頁</h1>
-{% endblock message %}
+  </main>
 
+{%include 'footer.html'%}

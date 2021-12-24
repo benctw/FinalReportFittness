@@ -1,54 +1,4 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.88.1">
-    <title>Fittness</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
-
-
-
-    <!-- Bootstrap core CSS -->
-<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-
-
-    <!-- Custom styles for this template -->
-    <link href="{{ url_for('static', filename='css/carousel.css') }}" rel="stylesheet">
-  </head>
-  <body>
-
-<header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand">Fittness</a>
-      <div class="container-fluid">
-        <span class="navbar-text">
-          AI x Line Bot
-        </span>
-      </div>
-    </div>
-  </nav>
-</header>
+{%include 'header.html'%}
 
 <main>
 
@@ -140,7 +90,7 @@
         <br></br>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-3" style="text-align: center;">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <img class="bd-placeholder-img rounded-circle" src="{{url_for('static', filename='images/yufan.jpg')}}" width="140" height="140">
         <br></br>
         <h2>楊芬瑜</h2>
         <p>Line Bot 功能 - BMI計算</p>
@@ -161,7 +111,7 @@
         <br></br>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-3" style="text-align: center;">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <img class="bd-placeholder-img rounded-circle" src="{{url_for('static', filename='images/junmin.jpg')}}" width="140" height="140">
         <br></br>
         <h2>彭俊銘</h2>
         <p>Line Bot 功能 - 健身菜單推薦</p>
@@ -193,11 +143,10 @@
       <div class="col-md-7">
         <h2 class="featurette-heading">BMI ｜ <span class="text-muted">數值計算與介紹</span></h2>
         <br>
-        <p class="lead">製作動機<br>使用者在健身前也許有聽過除了BMI以外的基礎代謝率及每日消耗熱量，體態的變化會因為各種因素而改變，除了身高、體重外，年齡及日常活動量更是判斷的重要依據，而聊天機器人會帶領使用者更明白這兩個是對於健身而言重要的數值。</p>
-        <p class="lead">功能介紹<br>點選其中一項之後，聊天機器人能給予解說以及幫助使用者進行簡易計算，還有一項功能是從飲食以及體能方面能改善代謝力的說明。</p>
+        <p class="lead">使用者在健身前也許有聽過除了BMI以外的基礎代謝率及每日消耗熱量，體態的變化會因為各種因素而改變，除了身高、體重外，年齡及日常活動量更是判斷的重要依據，而聊天機器人會帶領使用者更明白兩者，且提供從飲食以及體能方面能改善代謝力的說明。</p>
       </div>
       <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+        <img src="{{url_for('static', filename='images/bmi.jpg')}}" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" >
 
       </div>
     </div>
@@ -212,7 +161,7 @@
         <p class="lead">功能介紹<br>點選器材操作介紹後會跳出一個選單讓使用者選擇想要了解的器材，選擇後將會有此器材詳細的文字說明。</p>      
       </div>
       <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+        <img src="{{url_for('static', filename='images/instruction.jpg')}}" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" >
 
       </div>
     </div>
@@ -225,7 +174,7 @@
         <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
       </div>
       <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+        <img src="{{url_for('static', filename='images/menu.jpg')}}" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" >
 
       </div>
     </div>
@@ -235,11 +184,14 @@
     <div class="row featurette">
       <div class="col-md-7 order-md-2">
         <h2 class="featurette-heading">飲食推薦<span class="text-muted"></span></h2>
-        <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+        <p class="lead">客製化推薦：除了增肌減脂期的飲食外，在休息期間能有些彈性的選擇，但是對於熱量的管控還是不能太鬆懈！因此設計這一項功能，讓使用者選取該時段想攝取的卡路里量，而聊天機器人會回傳一個在範圍內的隨機餐點，供使用者參考，餐點的推薦內容非常廣泛，從中式到西式，路邊小吃店到異國料理應有盡有。</p>
+        <p class="lead">隨機推薦：使用者可以依照當前飽足感，選取想吃的份量，而聊天機器人會從預設的值挑選相對健康、營養的餐點推薦，且都是市面上常見或是易購得的食物，讓使用者不需每日侷限在卡路里的計算，也可以經由方便的服務，讓肚子吃飽飽，身體也強壯健康！</p>
+        <p class="lead">健身飲食提醒：在健身的三階段(增肌、減脂、休息)期，有不同食物營養熱量分配，也許剛踏入健身的時候不清楚飲食方面的分配，因此設計這項功能顯示該階段分別的熱量，以及建議的食物來源，最後有適合日常或各階段的提醒總結，讓使用者能以當前狀況進行食物的配置。</p>
+        <p class="lead">飲食小問題：針對健身期間想維持好體態的人，給予一些常見問題的解答，使用者能透過聊天機器人的解說，更明白在健身道路上的常見狀況以及優缺點、注意事項。</p>
+        <p class="lead">其他補充：除了日常早餐及正餐外，生活上有其他各式多元的飲食選擇，而我們常會疏忽一些問題，因此由聊天機器人給予補充解說，方便使用者在面對不同情況，隨時能查看基本原則以及該避免的事項。</p>
       </div>
       <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
+        <img src="{{url_for('static', filename='images/recommand.jpg')}}" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500">
       </div>
     </div>
 
@@ -251,7 +203,7 @@
         <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
       </div>
       <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+        <img src="{{url_for('static', filename='images/chat.jpg')}}" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" >
 
       </div>
     </div>
@@ -263,7 +215,7 @@
         <h2 class="featurette-heading" style="text-align: center;">掃描 QRcode ｜ <span class="text-muted">立即體驗</span></h2>
       </div>
       <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+        <img src="{{url_for('static', filename='images/qrcode.png')}}" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" >
 
       </div>
     </div>
@@ -280,12 +232,9 @@
     <p class="float-end"><a href="#"><button type="button" class="btn btn-outline-primary">Back to top</button></a></p>
 
     <p>&copy; 2017–2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="/">Terms</a></p>
+    
+
   </footer>
 </main>
 
-
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
-
-
-  </body>
-</html>
+{%include 'footer.html'%}

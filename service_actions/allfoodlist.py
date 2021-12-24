@@ -86,7 +86,7 @@ food_diet2.append(("醬油拉麵","510"))
 food_diet2.append(("咖哩水餃10個","550"))
 food_diet2.append(("蛋包飯","520"))
 food_diet2.append(("阜杭豆漿-經典飯糰(711)","535"))
-food_diet2.append(("大腸蚵仔麵線","460")
+food_diet2.append(("大腸蚵仔麵線","460"))
 
 
 food_diet3=[] #550-800

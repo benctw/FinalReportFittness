@@ -200,12 +200,6 @@ def handle_something(event):
             messages.append(TextSendMessage(text='大腿推蹬機介紹待定'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
-        elif '我想知道多功能單/雙槓輔助機怎麼用' in recrive_text:
-            messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/H8O5GVT.png', preview_image_url='https://i.imgur.com/JM2MHSi.png'))
-            messages.append(TextSendMessage(text='多功能單/雙槓輔助機介紹待定'))
-            messages.append(another_service_or_not)
-            line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道腿內收機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
@@ -228,12 +222,6 @@ def handle_something(event):
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
             messages.append(TextSendMessage(text='腹部旋轉機介紹待定'))
-            messages.append(another_service_or_not)
-            line_bot_api.reply_message(event.reply_token, messages)
-        elif '我想知道腹部前驅訓練機怎麼用' in recrive_text:
-            messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
-            messages.append(TextSendMessage(text='腹部前驅訓練機介紹待定'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道二頭訓練機怎麼用' in recrive_text:
@@ -335,8 +323,7 @@ def handle_something(event):
         elif '基礎代謝率是什麼' in recrive_text:
             messages=[]
             messages.append(TextSendMessage(text='BMR：基礎代謝率\n即使躺著不動，身體各器官工作需要消耗能量，來維持身體機能，而這樣的能量就被稱為「Basal Metabolic Rate」。'))
-            messages.append(TextSendMessage(text='第一個算法：\n男性：基礎代謝率 = (10 × 體重) + (6.25 × 身高) - (5 × 年齡) + 5\n女性：基礎代謝率 = (10 × 體重) + (6.25 × 身高) - (5 × 年齡) – 161'))
-            messages.append(TextSendMessage(text='第二個算法（已知體脂肪率）：\nBMR = 370 + 21.6 * 〔體重 X (100 – 體脂肪率的數值) / 100〕\n體脂肪愈多，基礎代謝率愈少。'))
+            messages.append(TextSendMessage(text='第一個算法：\n男性： 5+(13.7*KG)+(5*CM)-(6.8*年紀)\n女性：基礎代謝率 =655+(9.6*KG)+(1.8*CM)-(4.7*年紀)'))
             messages.append(service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
             

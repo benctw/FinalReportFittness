@@ -68,4 +68,4 @@ def call_introduction(event):
             ]
         )
     )
-    line_bot_api.reply_message(event.reply_token, message)# UD
+    line_bot_api.reply_message(event.reply_token, message)

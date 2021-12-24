@@ -179,6 +179,7 @@ def handle_something(event):
         recrive_text=event.message.text
         # print(recrive_text)
         if '器材操作說明' in recrive_text:
+            print("aaaaaa")
             # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
             call_introduction(event)
         elif '我想知道臥姿彎腿機怎麼用' in recrive_text:

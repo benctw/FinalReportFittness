@@ -199,12 +199,6 @@ def handle_something(event):
             messages.append(TextSendMessage(text='大腿推蹬機介紹待定'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
-        elif '我想知道多功能單/雙槓輔助機怎麼用' in recrive_text:
-            messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/H8O5GVT.png', preview_image_url='https://i.imgur.com/JM2MHSi.png'))
-            messages.append(TextSendMessage(text='多功能單/雙槓輔助機介紹待定'))
-            messages.append(another_service_or_not)
-            line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道腿內收機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
@@ -227,12 +221,6 @@ def handle_something(event):
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
             messages.append(TextSendMessage(text='腹部旋轉機介紹待定'))
-            messages.append(another_service_or_not)
-            line_bot_api.reply_message(event.reply_token, messages)
-        elif '我想知道腹部前驅訓練機怎麼用' in recrive_text:
-            messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
-            messages.append(TextSendMessage(text='腹部前驅訓練機介紹待定'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道二頭訓練機怎麼用' in recrive_text:

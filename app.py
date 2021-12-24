@@ -429,7 +429,7 @@ def handle_something(event):
             messages=[]
             messages.append(TextSendMessage(text='BMR：基礎代謝率\n即使躺著不動，身體各器官工作需要消耗能量，來維持身體機能，而這樣的能量就被稱為「Basal Metabolic Rate」。'))
             messages.append(TextSendMessage(text='第一個算法：\n男性： 5+(13.7*KG)+(5*CM)-(6.8*年紀)\n女性：基礎代謝率 =655+(9.6*KG)+(1.8*CM)-(4.7*年紀)'))
-            messages.append(service_or_not)
+            messages.append(count_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
             
         elif '每日總消耗熱量是什麼' in recrive_text:

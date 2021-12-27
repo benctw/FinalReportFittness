@@ -227,7 +227,7 @@ def handle_something(event):
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道三頭訓練機怎麼用' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://f1-recreation.com.tw/images/com_hikashop/upload/ss-tp.jpg', preview_image_url='https://f1-recreation.com.tw/images/com_hikashop/upload/ss-tp.jpg'))#orr
+            messages.append(ImageSendMessage(original_content_url='https://f1-recreation.com.tw/images/com_hikashop/upload/ss-tp.jpg', preview_image_url='https://f1-recreation.com.tw/images/com_hikashop/upload/ss-tp.jpg'))
             messages.append(TextSendMessage(text='三頭訓練機介紹待定'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)

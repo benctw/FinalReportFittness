@@ -235,7 +235,7 @@ def handle_something(event):
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://www.moonskyedu.com/bodybuild/%E8%B3%87%E6%96%99%E5%9C%96%E7%89%87/%E5%81%A5%E8%BA%AB%E5%99%A8%E6%9D%90/%E8%85%B9%E6%97%8B%E8%BD%89%E6%A9%9F1.jpg', preview_image_url='https://www.moonskyedu.com/bodybuild/%E8%B3%87%E6%96%99%E5%9C%96%E7%89%87/%E5%81%A5%E8%BA%AB%E5%99%A8%E6%9D%90/%E8%85%B9%E6%97%8B%E8%BD%89%E6%A9%9F1.jpg'))
             messages.append(TextSendMessage(text='腹部旋轉機介紹待定'))
-            messages.append(TextSendMessage(text='https://www.youtube.com/watch?v=NntC6i5Qj1k'))
+            messages.append(TextSendMessage(text='https://www.youtube.com/watch?v=NntC6i5Qj1k'))#
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道二頭訓練機怎麼用' in recrive_text:

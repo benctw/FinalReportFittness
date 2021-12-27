@@ -215,7 +215,7 @@ def handle_something(event):
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道腿內收機怎麼用' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://www.ruizhong.com.tw/images/products/Leg-retractor-N952.jpg', preview_image_url='https://www.ruizhong.com.tw/images/products/Leg-retractor-N952.jpg'))
+            messages.append(ImageSendMessage(original_content_url='https://www.ruizhong.com.tw/images/products/Leg-retractor-N952.jpg', preview_image_url='https://www.ruizhong.com.tw/images/products/Leg-retractor-N952.jpg'))#ori
             messages.append(TextSendMessage(text='腿內收機介紹待定'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)

@@ -198,7 +198,7 @@ def handle_something(event):
         elif '我想知道臥姿彎腿機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://www.gofitness.fi/images/products/screen-shot-2020-11-16-at-110018_orig.png', preview_image_url='https://www.gofitness.fi/images/products/screen-shot-2020-11-16-at-110018_orig.png'))
-            messages.append(TextSendMessage(text='臥姿彎腿機介紹待定'))
+            messages.append(TextSendMessage(text='主要訓練部位:腿後腱肌群。首先，根據個人調整小腿長度，行程及重量。隨後趴在機器上雙手握緊前方握把，膝蓋對準一旁轉軸軸心，小腿緊貼靠墊。當完成以上動作時便可以開始動作，吐氣時慢慢往上勾，吸氣時往下，注意勾起時不要撞到槓片。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)  
         elif '我想知道背伸機怎麼用' in recrive_text:

@@ -49,7 +49,7 @@ def callback():
 
 # handle msg
 import os
-import speech_recognition as sr
+# import speech_recognition as sr
 
 def transcribe(wav_path):
     '''
@@ -191,7 +191,7 @@ def handle_something(event):
 
     if event.message.type=='text':
         recrive_text=event.message.text
-        # print(recrive_text)
+        # print(recrive_text)#098
         if '器材操作說明' in recrive_text:
             # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
             call_introduction(event)
@@ -215,7 +215,7 @@ def handle_something(event):
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道腿內收機怎麼用' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://www.ruizhong.com.tw/images/products/Leg-retractor-N952.jpg', preview_image_url='https://www.ruizhong.com.tw/images/products/Leg-retractor-N952.jpg'))
+            messages.append(ImageSendMessage(original_content_url='https://www.ruizhong.com.tw/images/products/Leg-retractor-N952.jpg', preview_image_url='https://www.ruizhong.com.tw/images/products/Leg-retractor-N952.jpg'))#ori
             messages.append(TextSendMessage(text='腿內收機介紹待定'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
@@ -233,19 +233,19 @@ def handle_something(event):
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道腹部旋轉機怎麼用' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
+            messages.append(ImageSendMessage(original_content_url='https://www.moonskyedu.com/bodybuild/%E8%B3%87%E6%96%99%E5%9C%96%E7%89%87/%E5%81%A5%E8%BA%AB%E5%99%A8%E6%9D%90/%E8%85%B9%E6%97%8B%E8%BD%89%E6%A9%9F1.jpg', preview_image_url='https://www.moonskyedu.com/bodybuild/%E8%B3%87%E6%96%99%E5%9C%96%E7%89%87/%E5%81%A5%E8%BA%AB%E5%99%A8%E6%9D%90/%E8%85%B9%E6%97%8B%E8%BD%89%E6%A9%9F1.jpg'))
             messages.append(TextSendMessage(text='腹部旋轉機介紹待定'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道二頭訓練機怎麼用' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
+            messages.append(ImageSendMessage(original_content_url='https://gracegodfitness.com/wp-content/uploads/2019/08/S912-%E8%82%B1%E4%BA%8C%E9%A0%AD%E8%82%8C%E5%BD%8E%E6%9B%B2%E6%A9%9F.png', preview_image_url='https://gracegodfitness.com/wp-content/uploads/2019/08/S912-%E8%82%B1%E4%BA%8C%E9%A0%AD%E8%82%8C%E5%BD%8E%E6%9B%B2%E6%A9%9F.png'))
             messages.append(TextSendMessage(text='二頭訓練機介紹待定'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道腿部伸張機怎麼用' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
+            messages.append(ImageSendMessage(original_content_url='https://www.gosportsart.com/wp-content/uploads/2020/04/N957-web-2048x1366.jpg', preview_image_url='https://www.gosportsart.com/wp-content/uploads/2020/04/N957-web-2048x1366.jpg'))
             messages.append(TextSendMessage(text='腿部伸張機介紹待定'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)

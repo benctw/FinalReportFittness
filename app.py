@@ -480,7 +480,30 @@ def handle_something(event):
             line_bot_api.reply_message(event.reply_token, messages)
 
         elif '給我溫暖' in recrive_text:
-            encouragment_templet(event)
+            call_ask_mood_templet(event)
+        elif '我心情不好嗚嗚嗚' in recrive_text:
+            call_why_in_bad_mood(event)
+        elif '我努力了，但看不到成果QAQ' in recrive_text:
+            badmood_reason_one(event)
+        elif '最近在生活中遇到讓我難過的事...' in recrive_text:
+            badmood_reason_two(event)
+        elif '你不懂我啦...' in recrive_text:
+            badmood_reason_three(event)
+        elif '我今天心情普普通通通啦' in recrive_text:
+            call_soso_mood(event)
+        elif '我現在心情超級好的啦' in recrive_text:
+            call_good_mood(event)
+        elif '給你看給你看' in recrive_text:
+            messages=[]
+            messages.append(StickerSendMessage(package_id=446, sticker_id=1990))
+            messages.append(TextSendMessage(text='好的，請傳一張你的局部肌肉照片給我(我可以辨識手、腳、胸腹、背)'))
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '我先pass' in recrive_text:
+            messages=[]
+            messages.append(StickerSendMessage(package_id=446, sticker_id=1989))
+            messages.append(TextSendMessage(text='齁~對自己有自信一點啦~啊也不要擔心我是變態(這我可以發誓我絕對不是嗚嗚嗚嗚'))
+            messages.append(TextSendMessage(text='沒事，那我們下次再玩~'))
+            line_bot_api.reply_message(event.reply_token, messages)
             
         elif '計算BMI' in recrive_text:
             call_BMI(event)

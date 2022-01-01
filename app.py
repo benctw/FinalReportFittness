@@ -11,6 +11,15 @@ from service_actions.food_bonny import *
 from service_actions.allfoodlist import *
 from service_actions.encouragment import *
 from access_sqlite_db import *
+#import picture related
+from array import array
+import os, time
+from PIL import Image
+import sys
+import time
+from keras.models import load_model
+from PIL import Image, ImageOps
+import numpy as np
 
 # create flask server
 app = Flask(__name__)
@@ -545,9 +554,77 @@ def handle_something(event):
         line_bot_api.reply_message(event.reply_token, StickerSendMessage(package_id=receive_package_id, sticker_id=receive_sticker_id))
     elif event.message.type=='image':
         message_content = line_bot_api.get_message_content(event.message.id)
-        with open('temp_image.png', 'wb') as fd:
+        with open('.\\static\\temp_image.png', 'wb') as fd:
             for chunk in message_content.iter_content():
                 fd.write(chunk)
+
+        # Create the array of the right shape to feed into the keras model
+        # The 'length' or number of images you can put into the array is
+        # determined by the first position in the shape tuple, in this case 1.
+        data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
+        # Replace this with the path to your image
+        image = Image.open('.\\static\\temp_image.png')
+        #resize the image to a 224x224 with the same strategy as in TM2:
+        #resizing the image to be at least 224x224 and then cropping from the center
+        size = (224, 224)
+        image = ImageOps.fit(image, size, Image.ANTIALIAS)
+
+        #turn the image into a numpy array
+        image_array = np.asarray(image)
+        # Normalize the image
+        normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
+        # Load the image into the array
+        data[0] = normalized_image_array
+        # run the inference
+        prediction = model.predict(data)
+        results=('胸前', '背肌', '手臂', '腿腿', '無法辨識')
+        numerical_result=prediction.argmax()
+        if numerical_result == 0:
+            messages=[]
+            messages.append(TextSendMessage(text=f'你的{results[numerical_result]}在發光...你居然把自己變成了巧克力？！？'))
+            messages.append(TextSendMessage(text='你是狠角色，給你100分'))
+            messaegs.append(StickerSendMessage(package_id=11538, sticker_id=51626498))
+            messages.append(StickerSendMessage(package_id=happysticker[0], sticker_id=happysticker[1]))
+            messaegs.append(StickerSendMessage(package_id=11537, sticker_id=52002734))
+            line_bot_api.reply_message(event.reply_token, messages)
+
+        elif numerical_result == 1:
+            messages=[]
+            picture_my_goal='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmN5J1cf3n8LR9ffgln1KTXz_ECPPj83yIyg&usqp=CAU'
+            messaegs.append(StickerSendMessage(package_id=11537, sticker_id=52002747))
+            messages.append(f'你的{results[numerical_result]}好美，gorgeous!!!')
+            messages.append('給你的背100分，我超喜歡！！！')
+            messages.append('跟你分享我偶像羅尼庫爾曼的背肌')
+            messages.append(ImageSendMessage(original_content_url=picture_my_goal, 
+                                            preview_image_url=picture_my_goal))
+            line_bot_api.reply_message(event.reply_token, messages)
+
+        elif numerical_result == 2:
+            messages=[]
+            picture_dogdog='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT49akGsXV5-s6tHwa1b-XaCwSCAtDjkfhiSQ&usqp=CAU'
+            messages.append(TextSendMessage(text=f'你的{results[numerical_result]}練得很棒欸！！！你沒有辜負你之前的努力嗚嗚嗚'))
+            messages.append(TextSendMessage(text='雖然你已經100分了，但還要繼續朝著你的夢想前進！！！'))
+            messages.append(TextSendMessage(text='(給你看可愛的巨巨柴柴'))
+            messages.append(ImageSendMessage(original_content_url=picture_dogdog, 
+                                            preview_image_url=picture_dogdog))
+            line_bot_api.reply_message(event.reply_token, messages)
+            
+        elif numerical_result == 3:
+            messages=[]
+            picture_leg='https://www.lovely-dogs.com/image/blog/famous-fat-cat-who-inspired-meme-honored-with-statue-1.jpg'
+            messages.append(TextSendMessage(text=f'是{results[numerical_result]}！！你的{results[numerical_result]}怎麼這麼好看'))
+            messages.append(TextSendMessage(text='me be like：'))
+            messages.append(ImageSendMessage(original_content_url=picture_leg, 
+                                        preview_image_url=picture_leg))
+            messages.append(TextSendMessage(text='你真的超強的！比我強太多了！！(慚愧'))
+            line_bot_api.reply_message(event.reply_token, messages)
+
+        else:
+            messages=[]
+            messages.append(TextSendMessage(text='ㄨㄚ'))
+            messages.append(TextSendMessage(text='我看不出來你在哪裡...我的視力不好，金拍謝！！！'))
+            messages.append(TextSendMessage(text='你可以再傳一張比較清楚/只有特定部位的照片給我'))
+
     elif event.message.type=='audio':
         filename_wav='temp_audio.wav'
         filename_mp3='temp_audio.mp3'

@@ -181,7 +181,7 @@ def call_good_mood(event):
         template=ButtonsTemplate(
             #thumbnail_image_url='https://i.imgur.com/G4XHrYg.jpeg',
             title='給我看看你的得意成果啊~',
-            text='傳一張你局部的肌肉照給我，讓我評鑑你的到底有沒有認真',
+            text='傳一張你局部的肌肉照給我，讓我看看你到底有沒有認真',
             actions=[
                 MessageAction(
                     label='接受',

@@ -353,12 +353,33 @@ def handle_something(event):
         elif '健身菜單推薦' in recrive_text:
             # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
             call_introduction(event)
-        elif '一周兩天初級菜單' in recrive_text:
+        elif '菜單攻略' in recrive_text:
             messages=[]
-            messages.append(TextSendMessage(text='腿:深蹲*6,羅馬尼亞硬舉*6,胸:胸推*6,上胸推*6,肩:肩推*6,側平舉*6,臉拉*6,背:划船*6,背闊下拉*6'))
+            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/s4Gu433'))
+            messages.append(TextSendMessage(text='肌群:大肌群 → 小肌群\n關節:多關節 → 單關節,強度 高 → 低\n重量:重 → 輕（記得要先用輕重量暖身）'))
             messages.append(another_service_or_not)
-            line_bot_api.reply_message(event.reply_token, messages)  
-      
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '初級菜單' in recrive_text:
+            messages=[]
+            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/2a8gzJ1'))
+            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/OOTmkPR'))
+            messages.append(TextSendMessage(text='最重要是一周全部練完'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '進階菜單' in recrive_text:
+            messages=[]
+            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/XsuUcU9'))
+            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/3yKgRca'))
+            messages.append(TextSendMessage(text='1.緩慢提高主要訓練重量。\n2.運用遞減組來增加訓練量及代謝壓力。\n3.提高訓練組數。'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '徒手健身介紹' in recrive_text:
+            messages=[]
+            messages.append(TextSendMessage(text='不用任何器械或輔助工具，像是棒式、伏地挺身、仰臥起坐等等，可以在家裡或是公園訓練'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+ 
+
 
         elif '想知道有關增肌階段的建議' in recrive_text:
             messages=[]

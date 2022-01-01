@@ -67,8 +67,8 @@ def transcribe(wav_path):
     '''
     
     r = sr.Recognizer()
-    with sr.AudioFile(wav_path) as source:
-        audio = r.record(source)
+    with r.AudioFile(wav_path) as source:
+        audio = sr.record(source)
     try:
         return r.recognize_google(audio, language="zh-TW")
     except sr.UnknownValueError:
@@ -175,9 +175,7 @@ def handle_postback(event):
         messages.append(StickerSendMessage(package_id=8522, sticker_id=16581266))
         messages.append(TextSendMessage(text='不用客氣，很高興為您服務!'))
         line_bot_api.reply_message(event.reply_token, messages)
-
-
-######################以下兩個未知#################################
+        
     elif postback_data.get('action')=='還需要其他介紹':
         call_introduction(event)  
     elif postback_data.get('action')=='暫時先不用其他介紹':
@@ -185,7 +183,7 @@ def handle_postback(event):
         messages.append(StickerSendMessage(package_id=11537, sticker_id=52002734))
         messages.append(TextSendMessage(text='祝您有愉快的健身體驗'))
         line_bot_api.reply_message(event.reply_token, messages)
-#####################################################################
+
 
 
 @handler.add(MessageEvent)
@@ -200,62 +198,62 @@ def handle_something(event):
 
     if event.message.type=='text':
         recrive_text=event.message.text
-        # print(recrive_text)#098
+        # print(recrive_text)
         if '器材操作說明' in recrive_text:
             # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
             call_introduction(event)
         elif '我想知道臥姿彎腿機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://www.gofitness.fi/images/products/screen-shot-2020-11-16-at-110018_orig.png', preview_image_url='https://www.gofitness.fi/images/products/screen-shot-2020-11-16-at-110018_orig.png'))
-            messages.append(TextSendMessage(text='臥姿彎腿機介紹待定'))
+            messages.append(TextSendMessage(text='主要訓練部位:腿後腱肌群。首先，根據個人需求調整小腿長度、行程及重量。隨後趴在機器上雙手握緊前方握把，膝蓋對準一旁轉軸軸心，小腿緊貼靠墊。當完成以上動作時便可以開始動作，吐氣時慢慢往上勾，吸氣時往下，注意勾起時不要撞到槓片。結束時將腳慢慢放到底。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)  
         elif '我想知道背伸機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://f1-recreation.com.tw/images/com_hikashop/upload/202.jpg', preview_image_url='https://f1-recreation.com.tw/images/com_hikashop/upload/202.jpg'))
-            messages.append(TextSendMessage(text='背伸機介紹待定'))
+            messages.append(TextSendMessage(text='主要訓練部位:豎脊肌群。首先，依據個人需求調整背靠墊及柔軟度。坐上採好腳踏墊，將背與臀部緊靠墊子後調整重量。隨後，雙手抱胸吸氣，吐氣往後並挺胸到腰椎平行靠墊，不要過度拱腰，回來時，到槓片剩一片的距離。隨後重複吐氣往後，吸氣往前，結束時慢慢放輕即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages) 
         elif '我想知道大腿推蹬機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://gracegodfitness.com/wp-content/uploads/2019/08/DF201-%E5%A4%A7%E8%85%BF%E6%8E%A8%E8%B9%AC%E5%B0%8F%E8%85%BF%E4%BC%B8%E5%BC%B5%E8%A8%93%E7%B7%B4%E6%A9%9F-.jpg', preview_image_url='https://gracegodfitness.com/wp-content/uploads/2019/08/DF201-%E5%A4%A7%E8%85%BF%E6%8E%A8%E8%B9%AC%E5%B0%8F%E8%85%BF%E4%BC%B8%E5%BC%B5%E8%A8%93%E7%B7%B4%E6%A9%9F-.jpg'))
-            messages.append(TextSendMessage(text='大腿推蹬機介紹待定'))
+            messages.append(TextSendMessage(text='主要訓練部位:股四頭肌。首先，依據個人需求調整椅背的斜度、肩膀的高度。坐上機器後，將椅背距離調整到適當的位置，接著緊靠椅墊，雙腳與肩同寬，踏上踏墊。肩膀、膝蓋、腳尖呈一直線，注意膝蓋高度不要超過腳尖。隨後調整好你要的重量後，背緊靠椅墊，壓下墊肩。吸氣準備，吐氣用力往下蹬，注意回復時槓片不要碰撞。重複吐氣蹬腳、吸氣收，結束時輕放，避免槓片碰撞，之後解除肩墊即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道腿內收機怎麼用' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://www.ruizhong.com.tw/images/products/Leg-retractor-N952.jpg', preview_image_url='https://www.ruizhong.com.tw/images/products/Leg-retractor-N952.jpg'))#ori
-            messages.append(TextSendMessage(text='腿內收機介紹待定'))
+            messages.append(ImageSendMessage(original_content_url='https://www.ruizhong.com.tw/images/products/Leg-retractor-N952.jpg', preview_image_url='https://www.ruizhong.com.tw/images/products/Leg-retractor-N952.jpg'))
+            messages.append(TextSendMessage(text='主要訓練部位:股內側肌。首先，依據個人需求調整外展角度及重量。坐上去後選擇適合個人腳長的踏墊踩著，接著握好手把，吸氣準備。重複吐氣往內縮、吸氣放。放時保持槓片間隔一片的距離，結束時輕放避免槓片碰撞，手把拉起來後將靠墊回復即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道腿外展機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://www.f1-recreation.com.tw/images/com_hikashop/upload/ss-hab.jpg', preview_image_url='https://www.f1-recreation.com.tw/images/com_hikashop/upload/ss-hab.jpg'))
-            messages.append(TextSendMessage(text='腿外展機介紹待定'))
+            messages.append(TextSendMessage(text='主要訓練部位:闊筋膜張肌及臀大肌。首先，依據個人需求調整內收角度及重量。坐上去後選擇適合個人腳長的踏墊踩著，接著把下背與屁股貼緊椅背，拉開手把將椅墊調整到適合你的位置。握好把手，吸氣準備。重複吐氣往外展，吸氣收。收時保持槓片間隔一片的距離，結束時輕放避免槓片碰撞，手把拉開將坐墊回復即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道三頭訓練機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://f1-recreation.com.tw/images/com_hikashop/upload/ss-tp.jpg', preview_image_url='https://f1-recreation.com.tw/images/com_hikashop/upload/ss-tp.jpg'))
-            messages.append(TextSendMessage(text='三頭訓練機介紹待定'))
+            messages.append(TextSendMessage(text='主要訓練部位:肱三頭肌。首先，依據個人需求調整椅墊位置及重量。調整位置至胸口及手臂可以碰在器材上，調整好重量後雙手握著握把，使手臂平放後吸氣準備。重複吐氣放下，吸氣回，回時保持槓片間隔一片的距離。結束時輕輕放回即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道腹部旋轉機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://www.moonskyedu.com/bodybuild/%E8%B3%87%E6%96%99%E5%9C%96%E7%89%87/%E5%81%A5%E8%BA%AB%E5%99%A8%E6%9D%90/%E8%85%B9%E6%97%8B%E8%BD%89%E6%A9%9F1.jpg', preview_image_url='https://www.moonskyedu.com/bodybuild/%E8%B3%87%E6%96%99%E5%9C%96%E7%89%87/%E5%81%A5%E8%BA%AB%E5%99%A8%E6%9D%90/%E8%85%B9%E6%97%8B%E8%BD%89%E6%A9%9F1.jpg'))
-            messages.append(TextSendMessage(text='腹部旋轉機介紹待定'))
+            messages.append(TextSendMessage(text='主要訓練部位:腹內外斜肌。首先，依據個人需求調整椅墊高度、旋轉角度及重量。椅墊調整至胸與肩膀可以緊貼靠墊，手緊握握把，脊椎保持直立，胸部緊靠靠墊。吸氣準備，腰扭至45度角位置，吐氣回，同側重複數次。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道二頭訓練機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://gracegodfitness.com/wp-content/uploads/2019/08/S912-%E8%82%B1%E4%BA%8C%E9%A0%AD%E8%82%8C%E5%BD%8E%E6%9B%B2%E6%A9%9F.png', preview_image_url='https://gracegodfitness.com/wp-content/uploads/2019/08/S912-%E8%82%B1%E4%BA%8C%E9%A0%AD%E8%82%8C%E5%BD%8E%E6%9B%B2%E6%A9%9F.png'))
-            messages.append(TextSendMessage(text='二頭訓練機介紹待定'))
+            messages.append(TextSendMessage(text='主要訓練部位:肱二頭肌。首先，依據個人需求調整椅墊位置及重量。調整位置至胸口及手臂可以碰在器材上，調整好重量後雙手握著握把，使手臂平放後吸氣準備。舉起器材時吐氣，放下時吸氣，放時保持槓片間隔一片的距離。結束時輕輕放回即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道腿部伸張機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://www.gosportsart.com/wp-content/uploads/2020/04/N957-web-2048x1366.jpg', preview_image_url='https://www.gosportsart.com/wp-content/uploads/2020/04/N957-web-2048x1366.jpg'))
-            messages.append(TextSendMessage(text='腿部伸張機介紹待定'))
+            messages.append(TextSendMessage(text='主要訓練部位:肱四頭肌。首先，依照個人需求調整重量、椅墊、腳墊及行程。坐上機器後使臀部與背部貼好椅背，再將椅背調整至膝蓋能對準一旁轉軸軸心。隨後手握握把，吸氣準備。吐氣時腳往前踢，吸氣回，回時保持槓片間隔一片的距離。注意過程中腳盡量保持伸直，結束時輕輕放回即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
 

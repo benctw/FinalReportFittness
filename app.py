@@ -166,9 +166,7 @@ def handle_postback(event):
         messages.append(StickerSendMessage(package_id=8522, sticker_id=16581266))
         messages.append(TextSendMessage(text='不用客氣，很高興為您服務!'))
         line_bot_api.reply_message(event.reply_token, messages)
-
-
-######################以下兩個未知#################################
+        
     elif postback_data.get('action')=='還需要其他介紹':
         call_introduction(event)  
     elif postback_data.get('action')=='暫時先不用其他介紹':
@@ -176,7 +174,7 @@ def handle_postback(event):
         messages.append(StickerSendMessage(package_id=11537, sticker_id=52002734))
         messages.append(TextSendMessage(text='祝您有愉快的健身體驗'))
         line_bot_api.reply_message(event.reply_token, messages)
-#####################################################################
+
 
 
 @handler.add(MessageEvent)

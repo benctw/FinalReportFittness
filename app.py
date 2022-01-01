@@ -198,7 +198,7 @@ def handle_something(event):
         elif '我想知道臥姿彎腿機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://www.gofitness.fi/images/products/screen-shot-2020-11-16-at-110018_orig.png', preview_image_url='https://www.gofitness.fi/images/products/screen-shot-2020-11-16-at-110018_orig.png'))
-            messages.append(TextSendMessage(text='主要訓練部位:腿後腱肌群。首先，根據個人需求調整小腿長度，行程及重量。隨後趴在機器上雙手握緊前方握把，膝蓋對準一旁轉軸軸心，小腿緊貼靠墊。當完成以上動作時便可以開始動作，吐氣時慢慢往上勾，吸氣時往下，注意勾起時不要撞到槓片。結束時將腳慢慢放到底。'))
+            messages.append(TextSendMessage(text='主要訓練部位:腿後腱肌群。首先，根據個人需求調整小腿長度、行程及重量。隨後趴在機器上雙手握緊前方握把，膝蓋對準一旁轉軸軸心，小腿緊貼靠墊。當完成以上動作時便可以開始動作，吐氣時慢慢往上勾，吸氣時往下，注意勾起時不要撞到槓片。結束時將腳慢慢放到底。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)  
         elif '我想知道背伸機怎麼用' in recrive_text:
@@ -210,12 +210,12 @@ def handle_something(event):
         elif '我想知道大腿推蹬機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://gracegodfitness.com/wp-content/uploads/2019/08/DF201-%E5%A4%A7%E8%85%BF%E6%8E%A8%E8%B9%AC%E5%B0%8F%E8%85%BF%E4%BC%B8%E5%BC%B5%E8%A8%93%E7%B7%B4%E6%A9%9F-.jpg', preview_image_url='https://gracegodfitness.com/wp-content/uploads/2019/08/DF201-%E5%A4%A7%E8%85%BF%E6%8E%A8%E8%B9%AC%E5%B0%8F%E8%85%BF%E4%BC%B8%E5%BC%B5%E8%A8%93%E7%B7%B4%E6%A9%9F-.jpg'))
-            messages.append(TextSendMessage(text='大腿推蹬機介紹待定'))
+            messages.append(TextSendMessage(text='主要訓練部位:股四頭肌。首先，依據個人需求調整椅背的斜度、肩膀的高度。坐上機器後，將椅背距離調整到適當的位置，接著緊靠椅墊，雙腳與肩同寬，踏上踏墊。肩膀、膝蓋、腳尖呈一直線，注意膝蓋高度不要超過腳尖。隨後調整好你要的重量後，背緊靠椅墊，壓下墊肩。吸氣準備，吐氣用力往下蹬，注意回復時槓片不要碰撞。重複吐氣蹬腳、吸氣收，結束時輕放，避免槓片碰撞，之後解除肩墊即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道腿內收機怎麼用' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://www.ruizhong.com.tw/images/products/Leg-retractor-N952.jpg', preview_image_url='https://www.ruizhong.com.tw/images/products/Leg-retractor-N952.jpg'))#ori
+            messages.append(ImageSendMessage(original_content_url='https://www.ruizhong.com.tw/images/products/Leg-retractor-N952.jpg', preview_image_url='https://www.ruizhong.com.tw/images/products/Leg-retractor-N952.jpg'))
             messages.append(TextSendMessage(text='腿內收機介紹待定'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)

@@ -247,6 +247,16 @@ def handle_something(event):
         elif '想看看其他說明' in recrive_text:
             other_service(event)
 
+        elif '健身菜單推薦' in recrive_text:
+            # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
+            call_introduction(event)
+        elif '一周兩天初級菜單' in recrive_text:
+            messages=[]
+            messages.append(TextSendMessage(text='腿:深蹲*6,羅馬尼亞硬舉*6,胸:胸推*6,上胸推*6,肩:肩推*6,側平舉*6,臉拉*6,背:划船*6,背闊下拉*6'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)  
+      
+
         elif '想知道有關增肌階段的建議' in recrive_text:
             messages=[]
             messages.append(TextSendMessage(text='高碳水化合物\n體重*0.45*2=所需碳水\n碳水40-50%,蛋白質30-40%,脂肪10-30%'))
@@ -423,6 +433,7 @@ another_service_or_not = TemplateSendMessage(
         ]
     )
 )
+
 
 # run app
 if __name__ == "__main__":

@@ -204,7 +204,7 @@ def handle_something(event):
         elif '我想知道背伸機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://f1-recreation.com.tw/images/com_hikashop/upload/202.jpg', preview_image_url='https://f1-recreation.com.tw/images/com_hikashop/upload/202.jpg'))
-            messages.append(TextSendMessage(text='主要訓練部位:豎脊肌群。首先，依據個人需求調整背靠墊及柔軟度。坐上採好腳踏墊，將背與臀部緊靠墊子後調整重量。隨後，雙手抱胸吸氣，吐氣往後並挺胸到腰椎平行靠墊，不要過度拱腰，回來時，到槓片剩一片的距離即可。隨後重複吐氣往後，吸氣往前，結束時慢慢放輕。'))
+            messages.append(TextSendMessage(text='主要訓練部位:豎脊肌群。首先，依據個人需求調整背靠墊及柔軟度。坐上採好腳踏墊，將背與臀部緊靠墊子後調整重量。隨後，雙手抱胸吸氣，吐氣往後並挺胸到腰椎平行靠墊，不要過度拱腰，回來時，到槓片剩一片的距離。隨後重複吐氣往後，吸氣往前，結束時慢慢放輕即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages) 
         elif '我想知道大腿推蹬機怎麼用' in recrive_text:
@@ -216,37 +216,37 @@ def handle_something(event):
         elif '我想知道腿內收機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://www.ruizhong.com.tw/images/products/Leg-retractor-N952.jpg', preview_image_url='https://www.ruizhong.com.tw/images/products/Leg-retractor-N952.jpg'))
-            messages.append(TextSendMessage(text='腿內收機介紹待定'))
+            messages.append(TextSendMessage(text='主要訓練部位:股內側肌。首先，依據個人需求調整外展角度及重量。坐上去後選擇適合個人腳長的踏墊踩著，接著握好手把，吸氣準備。重複吐氣往內縮、吸氣放。放時保持槓片間隔一片的距離，結束時輕放避免槓片碰撞，手把拉起來後將靠墊回復即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道腿外展機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://www.f1-recreation.com.tw/images/com_hikashop/upload/ss-hab.jpg', preview_image_url='https://www.f1-recreation.com.tw/images/com_hikashop/upload/ss-hab.jpg'))
-            messages.append(TextSendMessage(text='腿外展機介紹待定'))
+            messages.append(TextSendMessage(text='主要訓練部位:闊筋膜張肌及臀大肌。首先，依據個人需求調整內收角度及重量。坐上去後選擇適合個人腳長的踏墊踩著，接著把下背與屁股貼緊椅背，拉開手把將椅墊調整到適合你的位置。握好把手，吸氣準備。重複吐氣往外展，吸氣收。收時保持槓片間隔一片的距離，結束時輕放避免槓片碰撞，手把拉開將坐墊回復即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道三頭訓練機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://f1-recreation.com.tw/images/com_hikashop/upload/ss-tp.jpg', preview_image_url='https://f1-recreation.com.tw/images/com_hikashop/upload/ss-tp.jpg'))
-            messages.append(TextSendMessage(text='三頭訓練機介紹待定'))
+            messages.append(TextSendMessage(text='主要訓練部位:肱三頭肌。首先，依據個人需求調整椅墊位置及重量。調整位置至胸口及手臂可以碰在器材上，調整好重量後雙手握著握把，使手臂平放後吸氣準備。重複吐氣放下，吸氣回，回時保持槓片間隔一片的距離。結束時輕輕放回即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道腹部旋轉機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://www.moonskyedu.com/bodybuild/%E8%B3%87%E6%96%99%E5%9C%96%E7%89%87/%E5%81%A5%E8%BA%AB%E5%99%A8%E6%9D%90/%E8%85%B9%E6%97%8B%E8%BD%89%E6%A9%9F1.jpg', preview_image_url='https://www.moonskyedu.com/bodybuild/%E8%B3%87%E6%96%99%E5%9C%96%E7%89%87/%E5%81%A5%E8%BA%AB%E5%99%A8%E6%9D%90/%E8%85%B9%E6%97%8B%E8%BD%89%E6%A9%9F1.jpg'))
-            messages.append(TextSendMessage(text='腹部旋轉機介紹待定'))
+            messages.append(TextSendMessage(text='主要訓練部位:腹內外斜肌。首先，依據個人需求調整椅墊高度、旋轉角度及重量。椅墊調整至胸與肩膀可以緊貼靠墊，手緊握握把，脊椎保持直立，胸部緊靠靠墊。吸氣準備，腰扭至45度角位置，吐氣回，同側重複數次。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道二頭訓練機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://gracegodfitness.com/wp-content/uploads/2019/08/S912-%E8%82%B1%E4%BA%8C%E9%A0%AD%E8%82%8C%E5%BD%8E%E6%9B%B2%E6%A9%9F.png', preview_image_url='https://gracegodfitness.com/wp-content/uploads/2019/08/S912-%E8%82%B1%E4%BA%8C%E9%A0%AD%E8%82%8C%E5%BD%8E%E6%9B%B2%E6%A9%9F.png'))
-            messages.append(TextSendMessage(text='二頭訓練機介紹待定'))
+            messages.append(TextSendMessage(text='主要訓練部位:肱二頭肌。首先，依據個人需求調整椅墊位置及重量。調整位置至胸口及手臂可以碰在器材上，調整好重量後雙手握著握把，使手臂平放後吸氣準備。舉起器材時吐氣，放下時吸氣，放時保持槓片間隔一片的距離。結束時輕輕放回即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道腿部伸張機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://www.gosportsart.com/wp-content/uploads/2020/04/N957-web-2048x1366.jpg', preview_image_url='https://www.gosportsart.com/wp-content/uploads/2020/04/N957-web-2048x1366.jpg'))
-            messages.append(TextSendMessage(text='腿部伸張機介紹待定'))
+            messages.append(TextSendMessage(text='主要訓練部位:肱四頭肌。首先，依照個人需求調整重量、椅墊、腳墊及行程。坐上機器後使臀部與背部貼好椅背，再將椅背調整至膝蓋能對準一旁轉軸軸心。隨後手握握把，吸氣準備。吐氣時腳往前踢，吸氣回，回時保持槓片間隔一片的距離。注意過程中腳盡量保持伸直，結束時輕輕放回即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
 

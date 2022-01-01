@@ -2,7 +2,7 @@
 import re
 from flask import Flask, request, abort, url_for, render_template
 from urllib.parse import parse_qsl, parse_qs
-import random
+import random,os, json, sqlite3
 from linebot.models import events
 from line_chatbot_api import *
 from service_actions.BMI import *
@@ -10,6 +10,7 @@ from service_actions.introduction import *
 from service_actions.food_bonny import *
 from service_actions.allfoodlist import *
 from service_actions.encouragment import *
+from access_sqlite_db import *
 
 # create flask server
 app = Flask(__name__)
@@ -48,7 +49,7 @@ def callback():
 
 # handle msg
 import os
-import speech_recognition as sr
+# import speech_recognition as sr
 
 def transcribe(wav_path):
     '''
@@ -57,8 +58,8 @@ def transcribe(wav_path):
     '''
     
     r = sr.Recognizer()
-    with sr.AudioFile(wav_path) as source:
-        audio = r.record(source)
+    with r.AudioFile(wav_path) as source:
+        audio = sr.record(source)
     try:
         return r.recognize_google(audio, language="zh-TW")
     except sr.UnknownValueError:
@@ -69,8 +70,12 @@ def transcribe(wav_path):
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
-    user_id = event.source.user_id
-    user_name = line_bot_api.get_profile(user_id).display_name
+    line_user_name = line_bot_api.get_profile(event.source.user_id).display_name
+    line_user_id = event.source.user_id
+    user_data = read_user_data(line_user_id, line_user_name)
+    user_age=user_data[4] if user_data[4] else 0
+    user_kg=user_data[2] if user_data[2] else 0
+    user_cm=user_data[3] if user_data[3] else 0
     # print(event.postback.data)
     postback_data = dict(parse_qsl(event.postback.data))
     # print(postback_data.get('action', ''))
@@ -153,7 +158,7 @@ def handle_postback(event):
             line_bot_api.reply_message(event.reply_token, messages)
             
     elif postback_data.get('action')=='再一次食物服務':
-        food_service(event)  
+        food_service(event, user_data) 
     elif postback_data.get('action')=='再來一個吧':
         recommend_choice(event)  
     elif postback_data.get('action')=='先不用喔!':
@@ -161,9 +166,7 @@ def handle_postback(event):
         messages.append(StickerSendMessage(package_id=8522, sticker_id=16581266))
         messages.append(TextSendMessage(text='不用客氣，很高興為您服務!'))
         line_bot_api.reply_message(event.reply_token, messages)
-
-
-######################以下兩個未知#################################
+        
     elif postback_data.get('action')=='還需要其他介紹':
         call_introduction(event)  
     elif postback_data.get('action')=='暫時先不用其他介紹':
@@ -171,11 +174,19 @@ def handle_postback(event):
         messages.append(StickerSendMessage(package_id=11537, sticker_id=52002734))
         messages.append(TextSendMessage(text='祝您有愉快的健身體驗'))
         line_bot_api.reply_message(event.reply_token, messages)
-#####################################################################
+
 
 
 @handler.add(MessageEvent)
 def handle_something(event):
+    line_user_name = line_bot_api.get_profile(event.source.user_id).display_name
+    line_user_id = event.source.user_id
+    user_data = read_user_data(line_user_id, line_user_name)
+    user_age=user_data[4] if user_data[4] else 0
+    user_kg=user_data[2] if user_data[2] else 0
+    user_cm=user_data[3] if user_data[3] else 0
+    function_handle_something(event, user_data)
+
     if event.message.type=='text':
         recrive_text=event.message.text
         # print(recrive_text)
@@ -185,59 +196,60 @@ def handle_something(event):
         elif '我想知道臥姿彎腿機怎麼用' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://www.gofitness.fi/images/products/screen-shot-2020-11-16-at-110018_orig.png', preview_image_url='https://www.gofitness.fi/images/products/screen-shot-2020-11-16-at-110018_orig.png'))
-            messages.append(TextSendMessage(text='臥姿彎腿機介紹待定'))
+            messages.append(TextSendMessage(text='主要訓練部位:腿後腱肌群。首先，根據個人需求調整小腿長度、行程及重量。隨後趴在機器上雙手握緊前方握把，膝蓋對準一旁轉軸軸心，小腿緊貼靠墊。當完成以上動作時便可以開始動作，吐氣時慢慢往上勾，吸氣時往下，注意勾起時不要撞到槓片。結束時將腳慢慢放到底。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)  
         elif '我想知道背伸機怎麼用' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/H8O5GVT.png', preview_image_url='https://i.imgur.com/JM2MHSi.png'))
-            messages.append(TextSendMessage(text='背伸機介紹待定'))
+            messages.append(ImageSendMessage(original_content_url='https://f1-recreation.com.tw/images/com_hikashop/upload/202.jpg', preview_image_url='https://f1-recreation.com.tw/images/com_hikashop/upload/202.jpg'))
+            messages.append(TextSendMessage(text='主要訓練部位:豎脊肌群。首先，依據個人需求調整背靠墊及柔軟度。坐上採好腳踏墊，將背與臀部緊靠墊子後調整重量。隨後，雙手抱胸吸氣，吐氣往後並挺胸到腰椎平行靠墊，不要過度拱腰，回來時，到槓片剩一片的距離。隨後重複吐氣往後，吸氣往前，結束時慢慢放輕即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages) 
         elif '我想知道大腿推蹬機怎麼用' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/H8O5GVT.png', preview_image_url='https://i.imgur.com/JM2MHSi.png'))
-            messages.append(TextSendMessage(text='大腿推蹬機介紹待定'))
+            messages.append(ImageSendMessage(original_content_url='https://gracegodfitness.com/wp-content/uploads/2019/08/DF201-%E5%A4%A7%E8%85%BF%E6%8E%A8%E8%B9%AC%E5%B0%8F%E8%85%BF%E4%BC%B8%E5%BC%B5%E8%A8%93%E7%B7%B4%E6%A9%9F-.jpg', preview_image_url='https://gracegodfitness.com/wp-content/uploads/2019/08/DF201-%E5%A4%A7%E8%85%BF%E6%8E%A8%E8%B9%AC%E5%B0%8F%E8%85%BF%E4%BC%B8%E5%BC%B5%E8%A8%93%E7%B7%B4%E6%A9%9F-.jpg'))
+            messages.append(TextSendMessage(text='主要訓練部位:股四頭肌。首先，依據個人需求調整椅背的斜度、肩膀的高度。坐上機器後，將椅背距離調整到適當的位置，接著緊靠椅墊，雙腳與肩同寬，踏上踏墊。肩膀、膝蓋、腳尖呈一直線，注意膝蓋高度不要超過腳尖。隨後調整好你要的重量後，背緊靠椅墊，壓下墊肩。吸氣準備，吐氣用力往下蹬，注意回復時槓片不要碰撞。重複吐氣蹬腳、吸氣收，結束時輕放，避免槓片碰撞，之後解除肩墊即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道腿內收機怎麼用' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
-            messages.append(TextSendMessage(text='腿內收機介紹待定'))
+            messages.append(ImageSendMessage(original_content_url='https://www.ruizhong.com.tw/images/products/Leg-retractor-N952.jpg', preview_image_url='https://www.ruizhong.com.tw/images/products/Leg-retractor-N952.jpg'))
+            messages.append(TextSendMessage(text='主要訓練部位:股內側肌。首先，依據個人需求調整外展角度及重量。坐上去後選擇適合個人腳長的踏墊踩著，接著握好手把，吸氣準備。重複吐氣往內縮、吸氣放。放時保持槓片間隔一片的距離，結束時輕放避免槓片碰撞，手把拉起來後將靠墊回復即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道腿外展機怎麼用' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
-            messages.append(TextSendMessage(text='腿外展機介紹待定'))
+            messages.append(ImageSendMessage(original_content_url='https://www.f1-recreation.com.tw/images/com_hikashop/upload/ss-hab.jpg', preview_image_url='https://www.f1-recreation.com.tw/images/com_hikashop/upload/ss-hab.jpg'))
+            messages.append(TextSendMessage(text='主要訓練部位:闊筋膜張肌及臀大肌。首先，依據個人需求調整內收角度及重量。坐上去後選擇適合個人腳長的踏墊踩著，接著把下背與屁股貼緊椅背，拉開手把將椅墊調整到適合你的位置。握好把手，吸氣準備。重複吐氣往外展，吸氣收。收時保持槓片間隔一片的距離，結束時輕放避免槓片碰撞，手把拉開將坐墊回復即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道三頭訓練機怎麼用' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
-            messages.append(TextSendMessage(text='三頭訓練機介紹待定'))
+            messages.append(ImageSendMessage(original_content_url='https://f1-recreation.com.tw/images/com_hikashop/upload/ss-tp.jpg', preview_image_url='https://f1-recreation.com.tw/images/com_hikashop/upload/ss-tp.jpg'))
+            messages.append(TextSendMessage(text='主要訓練部位:肱三頭肌。首先，依據個人需求調整椅墊位置及重量。調整位置至胸口及手臂可以碰在器材上，調整好重量後雙手握著握把，使手臂平放後吸氣準備。重複吐氣放下，吸氣回，回時保持槓片間隔一片的距離。結束時輕輕放回即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道腹部旋轉機怎麼用' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
-            messages.append(TextSendMessage(text='腹部旋轉機介紹待定'))
+            messages.append(ImageSendMessage(original_content_url='https://www.moonskyedu.com/bodybuild/%E8%B3%87%E6%96%99%E5%9C%96%E7%89%87/%E5%81%A5%E8%BA%AB%E5%99%A8%E6%9D%90/%E8%85%B9%E6%97%8B%E8%BD%89%E6%A9%9F1.jpg', preview_image_url='https://www.moonskyedu.com/bodybuild/%E8%B3%87%E6%96%99%E5%9C%96%E7%89%87/%E5%81%A5%E8%BA%AB%E5%99%A8%E6%9D%90/%E8%85%B9%E6%97%8B%E8%BD%89%E6%A9%9F1.jpg'))
+            messages.append(TextSendMessage(text='主要訓練部位:腹內外斜肌。首先，依據個人需求調整椅墊高度、旋轉角度及重量。椅墊調整至胸與肩膀可以緊貼靠墊，手緊握握把，脊椎保持直立，胸部緊靠靠墊。吸氣準備，腰扭至45度角位置，吐氣回，同側重複數次。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道二頭訓練機怎麼用' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
-            messages.append(TextSendMessage(text='二頭訓練機介紹待定'))
+            messages.append(ImageSendMessage(original_content_url='https://gracegodfitness.com/wp-content/uploads/2019/08/S912-%E8%82%B1%E4%BA%8C%E9%A0%AD%E8%82%8C%E5%BD%8E%E6%9B%B2%E6%A9%9F.png', preview_image_url='https://gracegodfitness.com/wp-content/uploads/2019/08/S912-%E8%82%B1%E4%BA%8C%E9%A0%AD%E8%82%8C%E5%BD%8E%E6%9B%B2%E6%A9%9F.png'))
+            messages.append(TextSendMessage(text='主要訓練部位:肱二頭肌。首先，依據個人需求調整椅墊位置及重量。調整位置至胸口及手臂可以碰在器材上，調整好重量後雙手握著握把，使手臂平放後吸氣準備。舉起器材時吐氣，放下時吸氣，放時保持槓片間隔一片的距離。結束時輕輕放回即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道腿部伸張機怎麼用' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg', preview_image_url='https://youso.hk/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/g/6/g6481_pioneerdual.jpg'))
-            messages.append(TextSendMessage(text='腿部伸張機介紹待定'))
+            messages.append(ImageSendMessage(original_content_url='https://www.gosportsart.com/wp-content/uploads/2020/04/N957-web-2048x1366.jpg', preview_image_url='https://www.gosportsart.com/wp-content/uploads/2020/04/N957-web-2048x1366.jpg'))
+            messages.append(TextSendMessage(text='主要訓練部位:肱四頭肌。首先，依照個人需求調整重量、椅墊、腳墊及行程。坐上機器後使臀部與背部貼好椅背，再將椅背調整至膝蓋能對準一旁轉軸軸心。隨後手握握把，吸氣準備。吐氣時腳往前踢，吸氣回，回時保持槓片間隔一片的距離。注意過程中腳盡量保持伸直，結束時輕輕放回即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
+
         elif '飲食推薦' in recrive_text:
-            food_service(event)
+            food_service(event, user_data)
         elif '想來點你推薦的餐點' in recrive_text:
             recommend_choice(event)
         elif '想知道一些小建議' in recrive_text:
@@ -246,6 +258,97 @@ def handle_something(event):
             answer_service(event)
         elif '想看看其他說明' in recrive_text:
             other_service(event)
+        elif '設定體重' == recrive_text:
+            update_user_action(line_user_id, 'set_kg')
+            message = TextSendMessage(text='請輸入您的體重(公斤)')
+            line_bot_api.reply_message(event.reply_token, message)
+        elif '設定身高' == recrive_text:
+            update_user_action(line_user_id, 'set_cm')
+            message = TextSendMessage(text='請輸入您的身高(公分)')
+            line_bot_api.reply_message(event.reply_token, message)
+        elif '設定年紀' == recrive_text:
+            update_user_action(line_user_id, 'set_age')
+            message = TextSendMessage(text='請輸入您的年紀(歲)')
+            line_bot_api.reply_message(event.reply_token, message)
+
+        elif '好啊!我是男生' == recrive_text:
+            if user_kg and user_cm and user_age:
+                message = TextSendMessage(text=f'BMR為{(13.7*user_kg)+(5.0*user_cm)-(6.8*user_age)+66:.1f}')
+                line_bot_api.reply_message(event.reply_token, message)
+            else:
+                message = TextSendMessage(text='請記得先設定身高, 體重, 年紀喔~',quick_reply=QuickReply(items=[
+                                                QuickReplyButton(action=MessageAction(label=f"體重{user_kg}公斤" if user_kg else "體重未設定", text="設定體重")),
+                                                QuickReplyButton(action=MessageAction(label=f"身高{user_cm}公分" if user_cm else "身高未設定", text="設定身高")),
+                                                QuickReplyButton(action=MessageAction(label=f"年紀{user_age}歲" if user_age else "年紀未設定", text="設定年紀"))
+                                                ]))
+                line_bot_api.reply_message(event.reply_token, message)
+
+        elif '好啊!我是女生' == recrive_text:
+            if user_kg and user_cm and user_age:
+                message = TextSendMessage(text=f'BMR為{(9.6*user_kg)+(1.8*user_cm)-(4.7*user_age)+655:.1f}')
+                line_bot_api.reply_message(event.reply_token, message)
+            else:
+                message = TextSendMessage(text='請記得先設定身高, 體重, 年紀喔~',quick_reply=QuickReply(items=[
+                                                QuickReplyButton(action=MessageAction(label=f"體重{user_kg}公斤" if user_kg else "體重未設定", text="設定體重")),
+                                                QuickReplyButton(action=MessageAction(label=f"身高{user_cm}公分" if user_cm else "身高未設定", text="設定身高")),
+                                                QuickReplyButton(action=MessageAction(label=f"年紀{user_age}歲" if user_age else "年紀未設定", text="設定年紀"))
+                                                ]))
+                line_bot_api.reply_message(event.reply_token, message)
+
+        elif read_user_action(line_user_id):
+            user_action = read_user_action(line_user_id)
+            if user_action == 'set_kg':
+                if recrive_text.isnumeric():
+                    update_user_kg(line_user_id, recrive_text)
+                    update_user_action(line_user_id, '')
+                    user_data = read_user_data(line_user_id, line_user_name)
+                    user_kg = user_data[2] if user_data[2] else None
+                    user_cm = user_data[3] if user_data[3] else None
+                    user_age = user_data[4] if user_data[4] else None
+                    message = TextSendMessage(text='體重設定成功',
+                                            quick_reply=QuickReply(items=[
+                                                QuickReplyButton(action=MessageAction(label=f"體重{user_kg}公斤" if user_kg else "體重未設定", text="設定體重")),
+                                                QuickReplyButton(action=MessageAction(label=f"身高{user_cm}公分" if user_cm else "身高未設定", text="設定身高")),
+                                                QuickReplyButton(action=MessageAction(label=f"年紀{user_age}歲" if user_age else "年紀未設定", text="設定年紀"))
+                                                ]))
+                else:
+                    message = TextSendMessage(text='請輸入數字')
+                line_bot_api.reply_message(event.reply_token, message)
+            elif user_action == 'set_cm':
+                if recrive_text.isnumeric():
+                    update_user_cm(line_user_id, recrive_text)
+                    update_user_action(line_user_id, '')
+                    user_data = read_user_data(line_user_id, line_user_name)
+                    user_kg = user_data[2] if user_data[2] else None
+                    user_cm = user_data[3] if user_data[3] else None
+                    user_age = user_data[4] if user_data[4] else None
+                    message = TextSendMessage(text='身高設定成功',
+                                            quick_reply=QuickReply(items=[
+                                                QuickReplyButton(action=MessageAction(label=f"體重{user_kg}公斤" if user_kg else "體重未設定", text="設定體重")),
+                                                QuickReplyButton(action=MessageAction(label=f"身高{user_cm}公分" if user_cm else "身高未設定", text="設定身高")),
+                                                QuickReplyButton(action=MessageAction(label=f"年紀{user_age}歲" if user_age else "年紀未設定", text="設定年紀"))
+                                                ]))
+                else:
+                    message = TextSendMessage(text='請輸入數字')
+                line_bot_api.reply_message(event.reply_token, message)
+            elif user_action == 'set_age':
+                if recrive_text.isnumeric():
+                    update_user_age(line_user_id, recrive_text)
+                    update_user_action(line_user_id, '')
+                    user_data = read_user_data(line_user_id, line_user_name)
+                    user_kg = user_data[2] if user_data[2] else None
+                    user_cm = user_data[3] if user_data[3] else None
+                    user_age = user_data[4] if user_data[4] else None
+                    message = TextSendMessage(text='年紀設定成功',
+                                            quick_reply=QuickReply(items=[
+                                                QuickReplyButton(action=MessageAction(label=f"體重{user_kg}公斤" if user_kg else "體重未設定", text="設定體重")),
+                                                QuickReplyButton(action=MessageAction(label=f"身高{user_cm}公分" if user_cm else "身高未設定", text="設定身高")),
+                                                QuickReplyButton(action=MessageAction(label=f"年紀{user_age}歲" if user_age else "年紀未設定", text="設定年紀"))
+                                                ]))
+                else:
+                    message = TextSendMessage(text='請輸入數字')
+                line_bot_api.reply_message(event.reply_token, message)
+        
 
         elif '健身菜單推薦' in recrive_text:
             # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
@@ -334,7 +437,7 @@ def handle_something(event):
             messages=[]
             messages.append(TextSendMessage(text='BMR：基礎代謝率\n即使躺著不動，身體各器官工作需要消耗能量，來維持身體機能，而這樣的能量就被稱為「Basal Metabolic Rate」。'))
             messages.append(TextSendMessage(text='第一個算法：\n男性： 5+(13.7*KG)+(5*CM)-(6.8*年紀)\n女性：基礎代謝率 =655+(9.6*KG)+(1.8*CM)-(4.7*年紀)'))
-            messages.append(service_or_not)
+            messages.append(count_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
             
         elif '每日總消耗熱量是什麼' in recrive_text:
@@ -385,7 +488,30 @@ def handle_something(event):
             line_bot_api.reply_message(event.reply_token, messages)
 
         elif '給我溫暖' in recrive_text:
-            encouragment_templet(event)
+            call_ask_mood_templet(event)
+        elif '我心情不好嗚嗚嗚' in recrive_text:
+            call_why_in_bad_mood(event)
+        elif '我努力了，但看不到成果QAQ' in recrive_text:
+            badmood_reason_one(event)
+        elif '最近在生活中遇到讓我難過的事...' in recrive_text:
+            badmood_reason_two(event)
+        elif '你不懂我啦...' in recrive_text:
+            badmood_reason_three(event)
+        elif '我今天心情普普通通通啦' in recrive_text:
+            call_soso_mood(event)
+        elif '我現在心情超級好的啦' in recrive_text:
+            call_good_mood(event)
+        elif '給你看給你看' in recrive_text:
+            messages=[]
+            messages.append(StickerSendMessage(package_id=446, sticker_id=1990))
+            messages.append(TextSendMessage(text='好的，請傳一張你的局部肌肉照片給我(我可以辨識手、腳、胸腹、背)'))
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '我先pass' in recrive_text:
+            messages=[]
+            messages.append(StickerSendMessage(package_id=446, sticker_id=1989))
+            messages.append(TextSendMessage(text='齁~對自己有自信一點啦~啊也不要擔心我是變態(這我可以發誓我絕對不是嗚嗚嗚嗚'))
+            messages.append(TextSendMessage(text='沒事，那我們下次再玩~'))
+            line_bot_api.reply_message(event.reply_token, messages)
             
         elif '計算BMI' in recrive_text:
             call_BMI(event)

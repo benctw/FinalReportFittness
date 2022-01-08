@@ -617,7 +617,7 @@ def handle_something(event):
     user_cm=user_data[3] if user_data[3] else 0
     function_handle_something(event, user_data)
 
-     if event.message.type=='text':
+    if event.message.type=='text':
         recrive_text=event.message.text
         # print(recrive_text)
         if '健身菜單推薦' in recrive_text:

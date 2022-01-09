@@ -280,7 +280,7 @@ def handle_something(event):
             line_bot_api.reply_message(event.reply_token, messages)  
         elif '我想知道背伸機怎麼用' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://f1-recreation.com.tw/images/com_hikashop/upload/202.jpg', preview_image_url='https://f1-recreation.com.tw/images/com_hikashop/upload/202.jpg'))
+            messages.append(ImageSendMessage(original_content_url='http://progym.com.tw/uploads/system/zhtw/prod_img/A3031.jpg', preview_image_url='http://progym.com.tw/uploads/system/zhtw/prod_img/A3031.jpg'))
             messages.append(TextSendMessage(text='主要訓練部位:豎脊肌群。首先，依據個人需求調整背靠墊及柔軟度。坐上採好腳踏墊，將背與臀部緊靠墊子後調整重量。隨後，雙手抱胸吸氣，吐氣往後並挺胸到腰椎平行靠墊，不要過度拱腰，回來時，到槓片剩一片的距離。隨後重複吐氣往後，吸氣往前，結束時慢慢放輕即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages) 
@@ -301,13 +301,13 @@ def handle_something(event):
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道腿外展機怎麼用' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://www.f1-recreation.com.tw/images/com_hikashop/upload/ss-hab.jpg', preview_image_url='https://www.f1-recreation.com.tw/images/com_hikashop/upload/ss-hab.jpg'))
+            messages.append(ImageSendMessage(original_content_url='https://img.shoplineapp.com/media/image_clips/5d130a7b8fb6070035e7770b/original.png?1561528954', preview_image_url='https://img.shoplineapp.com/media/image_clips/5d130a7b8fb6070035e7770b/original.png?1561528954'))
             messages.append(TextSendMessage(text='主要訓練部位:闊筋膜張肌及臀大肌。首先，依據個人需求調整內收角度及重量。坐上去後選擇適合個人腳長的踏墊踩著，接著把下背與屁股貼緊椅背，拉開手把將椅墊調整到適合你的位置。握好把手，吸氣準備。重複吐氣往外展，吸氣收。收時保持槓片間隔一片的距離，結束時輕放避免槓片碰撞，手把拉開將坐墊回復即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道三頭訓練機怎麼用' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://f1-recreation.com.tw/images/com_hikashop/upload/ss-tp.jpg', preview_image_url='https://f1-recreation.com.tw/images/com_hikashop/upload/ss-tp.jpg'))
+            messages.append(ImageSendMessage(original_content_url='https://www.ruizhong.com.tw/images/products/Triceps-training-machine-L160.jpg', preview_image_url='https://www.ruizhong.com.tw/images/products/Triceps-training-machine-L160.jpg'))
             messages.append(TextSendMessage(text='主要訓練部位:肱三頭肌。首先，依據個人需求調整椅墊位置及重量。調整位置至胸口及手臂可以碰在器材上，調整好重量後雙手握著握把，使手臂平放後吸氣準備。重複吐氣放下，吸氣回，回時保持槓片間隔一片的距離。結束時輕輕放回即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)

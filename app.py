@@ -192,21 +192,21 @@ def handle_something(event):
             line_bot_api.reply_message(event.reply_token, messages)
         elif '菜單攻略' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/qdnYqkt.jpg'))
+            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/qdnYqkt.jpg',preview_image_url='https://i.imgur.com/qdnYqkt.jpg'))
             messages.append(TextSendMessage(text='肌群:大肌群 → 小肌群\n關節:多關節 → 單關節,強度 高 → 低\n重量:重 → 輕（記得要先用輕重量暖身）'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '初級菜單' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/hyVXO8m.jpg'))
-            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/UNcUuuO.jpg'))
+            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/hyVXO8m.jpg',preview_image_url='https://i.imgur.com/hyVXO8m.jpg'))
+            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/UNcUuuO.jpg',preview_image_url='https://i.imgur.com/UNcUuuO.jpg'))
             messages.append(TextSendMessage(text='最重要是一周全部練完'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '進階菜單' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/9kTI0RO.jpg'))
-            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/pPHBmnv.jpg'))
+            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/9kTI0RO.jpg',preview_image_url='https://i.imgur.com/9kTI0RO.jpg'))
+            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/pPHBmnv.jpg',preview_image_url='https://i.imgur.com/pPHBmnv.jpg'))
             messages.append(TextSendMessage(text='1.緩慢提高主要訓練重量。\n2.運用遞減組來增加訓練量及代謝壓力。\n3.提高訓練組數。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)

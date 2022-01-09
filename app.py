@@ -22,6 +22,7 @@ from PIL import Image, ImageOps
 import numpy as np
 
 # create flask server
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -182,7 +183,6 @@ def handle_postback(event):
         line_bot_api.reply_message(event.reply_token, messages)
 
 
-
 @handler.add(MessageEvent)
 def handle_something(event):
     line_user_name = line_bot_api.get_profile(event.source.user_id).display_name
@@ -196,7 +196,80 @@ def handle_something(event):
     if event.message.type=='text':
         recrive_text=event.message.text
         # print(recrive_text)
-        if '器材操作說明' in recrive_text:
+        if '健身菜單推薦' in recrive_text:
+            # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
+            call_introduction(event)
+        elif '新手請看這裡' in recrive_text:
+            messages=[]
+            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/s4Gu433'))
+            messages.append(TextSendMessage(text='通常重訓會將多關節動作安排在一開始，因為多關節動作可以承受更大的負重，大負重才可以破壞肌肉纖維，助於肌肉的成長，也因為要大負重所以需要更專注的精神。另外較多肌肉參與可以讓訓練更有效率、消耗更多體能高。'))
+            messages.append(TextSendMessage(text='訓練菜單有蠻多種分法，對新手來說可以先以前面提到的「器械訓練為主，自由訓練為輔」，可以藉由固定式器材讓自己熟悉動作運行的軌道，也可以幫助身體記憶，降低訓練時思考要練什麼的心智負擔。'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '菜單攻略' in recrive_text:
+            messages=[]
+            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/s4Gu433'))
+            messages.append(TextSendMessage(text='肌群:大肌群 → 小肌群\n關節:多關節 → 單關節,強度 高 → 低\n重量:重 → 輕（記得要先用輕重量暖身）'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '初級菜單' in recrive_text:
+            messages=[]
+            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/2a8gzJ1'))
+            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/OOTmkPR'))
+            messages.append(TextSendMessage(text='最重要是一周全部練完'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '進階菜單' in recrive_text:
+            messages=[]
+            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/XsuUcU9'))
+            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/3yKgRca'))
+            messages.append(TextSendMessage(text='1.緩慢提高主要訓練重量。\n2.運用遞減組來增加訓練量及代謝壓力。\n3.提高訓練組數。'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '徒手健身介紹' in recrive_text:
+            messages=[]
+            messages.append(TextSendMessage(text='不用任何器械或輔助工具，像是棒式、伏地挺身、仰臥起坐等等，可以在家裡或是公園訓練'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '徒手健身day1' in recrive_text:
+            messages=[]
+            messages.append(TextSendMessage(text='剛開始運動的第一天，從相對較簡單的 20 分鐘全身性徒手訓練，以及新手也能輕鬆上手的 10 分鐘腹肌運動開始吧！'))
+            messages.append(TextSendMessage(text='20 分鐘的全身訓練當中，包含訓練大腿的後跨步抬手、深蹲，以及訓練臀部的臀橋、單腳臀橋，最後用平板爬碰趾鍛鍊核心肌群、超人式訓練背部，每組動作維持 40 秒，難度不高卻能有效運用到全身肌肉，很適合剛開始嘗試徒手重訓的初學者們。'))
+            messages.append(TextSendMessage(text='10 分鐘的腹肌訓練總共有 15 個動作，每次維持 30 秒，休息 10 秒，動作包含反向屈腿、躺臥腳踏車，以及挑戰度比較高的側平板捲腹、俄羅斯轉體等，能鍛煉整個腹部肌群，是一組即使在下午零碎時間也能輕鬆完成的訓練動作。'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '徒手健身day2' in recrive_text:
+            messages=[]
+            messages.append(TextSendMessage(text='在家坐著工作一整天，很容易讓下半身痠痛水腫，下班後用 20 分鐘的臀腿訓練刺激大肌群，不僅能放鬆緊繃肌肉，同時也能打造迷人的肌肉線條。'))
+            messages.append(TextSendMessage(text='這組訓練動作除了有各種深蹲的變化姿勢和臀推、臀橋之外，也加入了幾組伸展動作，能減緩隔天的乳酸堆積情況，使運動後的肌肉線條更加柔美'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '徒手健身day3' in recrive_text:
+            messages=[]
+            messages.append(TextSendMessage(text='來到運動的第三天，這時身體已經漸漸適應運動中的狀態，可以開始挑戰進階版的運動囉！建議可以先從 15 分鐘的高強度間歇運動開始，進行全身性的燃脂活動，讓身體達到一個微喘、發熱的狀態，再搭配一組 20 分鐘的上肢訓練，用跪姿伏地挺身、左右超人式等姿勢搭配毛巾增加阻力，不需要重訓器材也能快速訓練上半身肌肉，讓你的肩背線條更精實。'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '徒手健身day4' in recrive_text:
+            messages=[]
+            messages.append(TextSendMessage(text='連續運動三天的你，別忘記讓自己的身體好好休息，今天就暫停訓練一次，給自己一段放鬆休閒的時光吧！'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '徒手健身day5' in recrive_text:
+            messages=[]
+            messages.append(TextSendMessage(text='休息過後，別急著進行太過劇烈的運動，用前幾天已經做過的 20 分鐘臀腿訓練來找回運動節奏吧！鍛煉下半身的肌力，不僅能讓臀腿線條變精實，還能穩定身體、提升全身平衡度，讓你的雙腿看起來更修長，身形也更柔美。'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '徒手健身day6' in recrive_text:
+            messages=[]
+            messages.append(TextSendMessage(text='相較於前面幾個訓練，這組 25 分鐘的 HIIT 燃脂運動的挑戰性又再更高一些，有訓練核心跟腿部的平板深蹲跳、停頓跨步蹲抬腳，以及訓練腹肌的跪姿伏地挺身、扭身平板等等，每個動作都十分精實，加上幾乎大多數的動作屬於有氧運動，做到後面真的會氣喘吁吁啊！'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '徒手健身day7' in recrive_text:
+            messages=[]
+            messages.append(TextSendMessage(text='來到本週訓練的最後一天，用 10 分鐘的 HIIT 運動和 15 分鐘的腹肌訓練為整週的在家運動時光畫下句點吧！10 分鐘快速燃脂的高強度全身訓練，能夠快速熱開身體，不需花太多時間就能適應運動模式。接著，搭配 15 分鐘的進階腹肌訓練，用各式變化型的捲腹運動、登山式等動作鍛煉側腹跟核心肌群，最後以平板支撐收尾，讓身體在短短的 25 分鐘內完成全身性的進階訓練。'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+        elif '器材操作說明' in recrive_text:
             # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
             call_introduction(event)
         elif '我想知道臥姿彎腿機怎麼用' in recrive_text:
@@ -213,8 +286,11 @@ def handle_something(event):
             line_bot_api.reply_message(event.reply_token, messages) 
         elif '我想知道大腿推蹬機怎麼用' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://gracegodfitness.com/wp-content/uploads/2019/08/DF201-%E5%A4%A7%E8%85%BF%E6%8E%A8%E8%B9%AC%E5%B0%8F%E8%85%BF%E4%BC%B8%E5%BC%B5%E8%A8%93%E7%B7%B4%E6%A9%9F-.jpg', preview_image_url='https://gracegodfitness.com/wp-content/uploads/2019/08/DF201-%E5%A4%A7%E8%85%BF%E6%8E%A8%E8%B9%AC%E5%B0%8F%E8%85%BF%E4%BC%B8%E5%BC%B5%E8%A8%93%E7%B7%B4%E6%A9%9F-.jpg'))
-            messages.append(TextSendMessage(text='主要訓練部位:股四頭肌。首先，依據個人需求調整椅背的斜度、肩膀的高度。坐上機器後，將椅背距離調整到適當的位置，接著緊靠椅墊，雙腳與肩同寬，踏上踏墊。肩膀、膝蓋、腳尖呈一直線，注意膝蓋高度不要超過腳尖。隨後調整好你要的重量後，背緊靠椅墊，壓下墊肩。吸氣準備，吐氣用力往下蹬，注意回復時槓片不要碰撞。重複吐氣蹬腳、吸氣收，結束時輕放，避免槓片碰撞，之後解除肩墊即可。'))
+            messages.append(ImageSendMessage(original_content_url="https://gracegodfitness.com/wp-content/uploads/2019/08/DF201-%E5%A4%A7%E8%85%BF%E6%8E%A8%E8%B9%AC%E5%B0%8F%E8%85%BF%E4%BC%B8%E5%BC%B5%E8%A8%93%E7%B7%B4%E6%A9%9F-.jpg", preview_image_url="https://gracegodfitness.com/wp-content/uploads/2019/08/DF201-%E5%A4%A7%E8%85%BF%E6%8E%A8%E8%B9%AC%E5%B0%8F%E8%85%BF%E4%BC%B8%E5%BC%B5%E8%A8%93%E7%B7%B4%E6%A9%9F-.jpg"))
+            messages.append(TextSendMessage(text='主要訓練部位:股四頭肌。首先，依據個人需求調整椅背的斜度、肩膀的高度。\
+                坐上機器後，將椅背距離調整到適當的位置，接著緊靠椅墊，雙腳與肩同寬，踏上踏墊。肩膀、膝蓋、腳尖呈一直線，\
+                注意膝蓋高度不要超過腳尖。隨後調整好你要的重量後，背緊靠椅墊，壓下墊肩。吸氣準備，吐氣用力往下蹬，注意回復\
+                時槓片不要碰撞。重複吐氣蹬腳、吸氣收，結束時輕放，避免槓片碰撞，之後解除肩墊即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '我想知道腿內收機怎麼用' in recrive_text:
@@ -299,60 +375,6 @@ def handle_something(event):
                                                 QuickReplyButton(action=MessageAction(label=f"身高{user_cm}公分" if user_cm else "身高未設定", text="設定身高")),
                                                 QuickReplyButton(action=MessageAction(label=f"年紀{user_age}歲" if user_age else "年紀未設定", text="設定年紀"))
                                                 ]))
-                line_bot_api.reply_message(event.reply_token, message)
-
-        elif read_user_action(line_user_id):
-            user_action = read_user_action(line_user_id)
-            if user_action == 'set_kg':
-                if recrive_text.isnumeric():
-                    update_user_kg(line_user_id, recrive_text)
-                    update_user_action(line_user_id, '')
-                    user_data = read_user_data(line_user_id, line_user_name)
-                    user_kg = user_data[2] if user_data[2] else None
-                    user_cm = user_data[3] if user_data[3] else None
-                    user_age = user_data[4] if user_data[4] else None
-                    message = TextSendMessage(text='體重設定成功',
-                                            quick_reply=QuickReply(items=[
-                                                QuickReplyButton(action=MessageAction(label=f"體重{user_kg}公斤" if user_kg else "體重未設定", text="設定體重")),
-                                                QuickReplyButton(action=MessageAction(label=f"身高{user_cm}公分" if user_cm else "身高未設定", text="設定身高")),
-                                                QuickReplyButton(action=MessageAction(label=f"年紀{user_age}歲" if user_age else "年紀未設定", text="設定年紀"))
-                                                ]))
-                else:
-                    message = TextSendMessage(text='請輸入數字')
-                line_bot_api.reply_message(event.reply_token, message)
-            elif user_action == 'set_cm':
-                if recrive_text.isnumeric():
-                    update_user_cm(line_user_id, recrive_text)
-                    update_user_action(line_user_id, '')
-                    user_data = read_user_data(line_user_id, line_user_name)
-                    user_kg = user_data[2] if user_data[2] else None
-                    user_cm = user_data[3] if user_data[3] else None
-                    user_age = user_data[4] if user_data[4] else None
-                    message = TextSendMessage(text='身高設定成功',
-                                            quick_reply=QuickReply(items=[
-                                                QuickReplyButton(action=MessageAction(label=f"體重{user_kg}公斤" if user_kg else "體重未設定", text="設定體重")),
-                                                QuickReplyButton(action=MessageAction(label=f"身高{user_cm}公分" if user_cm else "身高未設定", text="設定身高")),
-                                                QuickReplyButton(action=MessageAction(label=f"年紀{user_age}歲" if user_age else "年紀未設定", text="設定年紀"))
-                                                ]))
-                else:
-                    message = TextSendMessage(text='請輸入數字')
-                line_bot_api.reply_message(event.reply_token, message)
-            elif user_action == 'set_age':
-                if recrive_text.isnumeric():
-                    update_user_age(line_user_id, recrive_text)
-                    update_user_action(line_user_id, '')
-                    user_data = read_user_data(line_user_id, line_user_name)
-                    user_kg = user_data[2] if user_data[2] else None
-                    user_cm = user_data[3] if user_data[3] else None
-                    user_age = user_data[4] if user_data[4] else None
-                    message = TextSendMessage(text='年紀設定成功',
-                                            quick_reply=QuickReply(items=[
-                                                QuickReplyButton(action=MessageAction(label=f"體重{user_kg}公斤" if user_kg else "體重未設定", text="設定體重")),
-                                                QuickReplyButton(action=MessageAction(label=f"身高{user_cm}公分" if user_cm else "身高未設定", text="設定身高")),
-                                                QuickReplyButton(action=MessageAction(label=f"年紀{user_age}歲" if user_age else "年紀未設定", text="設定年紀"))
-                                                ]))
-                else:
-                    message = TextSendMessage(text='請輸入數字')
                 line_bot_api.reply_message(event.reply_token, message)
 
         elif '想知道有關增肌階段的建議' in recrive_text:
@@ -510,9 +532,62 @@ def handle_something(event):
             
         elif '計算BMI' in recrive_text:
             call_BMI(event)
+        elif read_user_action(line_user_id):
+            user_action = read_user_action(line_user_id)
+            if user_action == 'set_kg':
+                if recrive_text.isnumeric():
+                    update_user_kg(line_user_id, recrive_text)
+                    update_user_action(line_user_id, '')
+                    user_data = read_user_data(line_user_id, line_user_name)
+                    user_kg = user_data[2] if user_data[2] else None
+                    user_cm = user_data[3] if user_data[3] else None
+                    user_age = user_data[4] if user_data[4] else None
+                    message = TextSendMessage(text='體重設定成功',
+                                            quick_reply=QuickReply(items=[
+                                                QuickReplyButton(action=MessageAction(label=f"體重{user_kg}公斤" if user_kg else "體重未設定", text="設定體重")),
+                                                QuickReplyButton(action=MessageAction(label=f"身高{user_cm}公分" if user_cm else "身高未設定", text="設定身高")),
+                                                QuickReplyButton(action=MessageAction(label=f"年紀{user_age}歲" if user_age else "年紀未設定", text="設定年紀"))
+                                                ]))
+                else:
+                    message = TextSendMessage(text='請輸入數字')
+                line_bot_api.reply_message(event.reply_token, message)
+            elif user_action == 'set_cm':
+                if recrive_text.isnumeric():
+                    update_user_cm(line_user_id, recrive_text)
+                    update_user_action(line_user_id, '')
+                    user_data = read_user_data(line_user_id, line_user_name)
+                    user_kg = user_data[2] if user_data[2] else None
+                    user_cm = user_data[3] if user_data[3] else None
+                    user_age = user_data[4] if user_data[4] else None
+                    message = TextSendMessage(text='身高設定成功',
+                                            quick_reply=QuickReply(items=[
+                                                QuickReplyButton(action=MessageAction(label=f"體重{user_kg}公斤" if user_kg else "體重未設定", text="設定體重")),
+                                                QuickReplyButton(action=MessageAction(label=f"身高{user_cm}公分" if user_cm else "身高未設定", text="設定身高")),
+                                                QuickReplyButton(action=MessageAction(label=f"年紀{user_age}歲" if user_age else "年紀未設定", text="設定年紀"))
+                                                ]))
+                else:
+                    message = TextSendMessage(text='請輸入數字')
+                line_bot_api.reply_message(event.reply_token, message)
+            elif user_action == 'set_age':
+                if recrive_text.isnumeric():
+                    update_user_age(line_user_id, recrive_text)
+                    update_user_action(line_user_id, '')
+                    user_data = read_user_data(line_user_id, line_user_name)
+                    user_kg = user_data[2] if user_data[2] else None
+                    user_cm = user_data[3] if user_data[3] else None
+                    user_age = user_data[4] if user_data[4] else None
+                    message = TextSendMessage(text='年紀設定成功',
+                                            quick_reply=QuickReply(items=[
+                                                QuickReplyButton(action=MessageAction(label=f"體重{user_kg}公斤" if user_kg else "體重未設定", text="設定體重")),
+                                                QuickReplyButton(action=MessageAction(label=f"身高{user_cm}公分" if user_cm else "身高未設定", text="設定身高")),
+                                                QuickReplyButton(action=MessageAction(label=f"年紀{user_age}歲" if user_age else "年紀未設定", text="設定年紀"))
+                                                ]))
+                else:
+                    message = TextSendMessage(text='請輸入數字')
+                line_bot_api.reply_message(event.reply_token, message)
         else:
             calculate_BMI(event,recrive_text)
-
+    
     elif event.message.type=='sticker':
         receive_sticker_id=event.message.sticker_id
         receive_package_id=event.message.package_id
@@ -602,95 +677,7 @@ def handle_something(event):
         # print('Transcribe:', text)
         if '服務' in text:
             # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
-            call_introduction(event)
-
-@handler.add(MessageEvent)
-def handle_something(event):
-    line_user_name = line_bot_api.get_profile(event.source.user_id).display_name
-    line_user_id = event.source.user_id
-    user_data = read_user_data(line_user_id, line_user_name)
-    user_age=user_data[4] if user_data[4] else 0
-    user_kg=user_data[2] if user_data[2] else 0
-    user_cm=user_data[3] if user_data[3] else 0
-    function_handle_something(event, user_data)
-
-    if event.message.type=='text':
-        recrive_text=event.message.text
-        # print(recrive_text)
-        if '健身菜單推薦' in recrive_text:
-            # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
-            call_introduction(event)
-        elif '新手請看這裡' in recrive_text:
-            messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/s4Gu433'))
-            messages.append(TextSendMessage(text='通常重訓會將多關節動作安排在一開始，因為多關節動作可以承受更大的負重，大負重才可以破壞肌肉纖維，助於肌肉的成長，也因為要大負重所以需要更專注的精神。另外較多肌肉參與可以讓訓練更有效率、消耗更多體能高。'))
-            messages.append(TextSendMessage(text='訓練菜單有蠻多種分法，對新手來說可以先以前面提到的「器械訓練為主，自由訓練為輔」，可以藉由固定式器材讓自己熟悉動作運行的軌道，也可以幫助身體記憶，降低訓練時思考要練什麼的心智負擔。'))
-            messages.append(another_service_or_not)
-            line_bot_api.reply_message(event.reply_token, messages)
-        elif '菜單攻略' in recrive_text:
-            messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/s4Gu433'))
-            messages.append(TextSendMessage(text='肌群:大肌群 → 小肌群\n關節:多關節 → 單關節,強度 高 → 低\n重量:重 → 輕（記得要先用輕重量暖身）'))
-            messages.append(another_service_or_not)
-            line_bot_api.reply_message(event.reply_token, messages)
-        elif '初級菜單' in recrive_text:
-            messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/2a8gzJ1'))
-            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/OOTmkPR'))
-            messages.append(TextSendMessage(text='最重要是一周全部練完'))
-            messages.append(another_service_or_not)
-            line_bot_api.reply_message(event.reply_token, messages)
-        elif '進階菜單' in recrive_text:
-            messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/XsuUcU9'))
-            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/3yKgRca'))
-            messages.append(TextSendMessage(text='1.緩慢提高主要訓練重量。\n2.運用遞減組來增加訓練量及代謝壓力。\n3.提高訓練組數。'))
-            messages.append(another_service_or_not)
-            line_bot_api.reply_message(event.reply_token, messages)
-        elif '徒手健身介紹' in recrive_text:
-            messages=[]
-            messages.append(TextSendMessage(text='不用任何器械或輔助工具，像是棒式、伏地挺身、仰臥起坐等等，可以在家裡或是公園訓練'))
-            messages.append(another_service_or_not)
-            line_bot_api.reply_message(event.reply_token, messages)
-        elif '徒手健身day1' in recrive_text:
-            messages=[]
-            messages.append(TextSendMessage(text='剛開始運動的第一天，從相對較簡單的 20 分鐘全身性徒手訓練，以及新手也能輕鬆上手的 10 分鐘腹肌運動開始吧！'))
-            messages.append(TextSendMessage(text='20 分鐘的全身訓練當中，包含訓練大腿的後跨步抬手、深蹲，以及訓練臀部的臀橋、單腳臀橋，最後用平板爬碰趾鍛鍊核心肌群、超人式訓練背部，每組動作維持 40 秒，難度不高卻能有效運用到全身肌肉，很適合剛開始嘗試徒手重訓的初學者們。'))
-            messages.append(TextSendMessage(text='10 分鐘的腹肌訓練總共有 15 個動作，每次維持 30 秒，休息 10 秒，動作包含反向屈腿、躺臥腳踏車，以及挑戰度比較高的側平板捲腹、俄羅斯轉體等，能鍛煉整個腹部肌群，是一組即使在下午零碎時間也能輕鬆完成的訓練動作。'))
-            messages.append(another_service_or_not)
-            line_bot_api.reply_message(event.reply_token, messages)
-        elif '徒手健身day2' in recrive_text:
-            messages=[]
-            messages.append(TextSendMessage(text='在家坐著工作一整天，很容易讓下半身痠痛水腫，下班後用 20 分鐘的臀腿訓練刺激大肌群，不僅能放鬆緊繃肌肉，同時也能打造迷人的肌肉線條。'))
-            messages.append(TextSendMessage(text='這組訓練動作除了有各種深蹲的變化姿勢和臀推、臀橋之外，也加入了幾組伸展動作，能減緩隔天的乳酸堆積情況，使運動後的肌肉線條更加柔美'))
-            messages.append(another_service_or_not)
-            line_bot_api.reply_message(event.reply_token, messages)
-        elif '徒手健身day3' in recrive_text:
-            messages=[]
-            messages.append(TextSendMessage(text='來到運動的第三天，這時身體已經漸漸適應運動中的狀態，可以開始挑戰進階版的運動囉！建議可以先從 15 分鐘的高強度間歇運動開始，進行全身性的燃脂活動，讓身體達到一個微喘、發熱的狀態，再搭配一組 20 分鐘的上肢訓練，用跪姿伏地挺身、左右超人式等姿勢搭配毛巾增加阻力，不需要重訓器材也能快速訓練上半身肌肉，讓你的肩背線條更精實。'))
-            messages.append(another_service_or_not)
-            line_bot_api.reply_message(event.reply_token, messages)
-        elif '徒手健身day4' in recrive_text:
-            messages=[]
-            messages.append(TextSendMessage(text='連續運動三天的你，別忘記讓自己的身體好好休息，今天就暫停訓練一次，給自己一段放鬆休閒的時光吧！'))
-            messages.append(another_service_or_not)
-            line_bot_api.reply_message(event.reply_token, messages)
-        elif '徒手健身day5' in recrive_text:
-            messages=[]
-            messages.append(TextSendMessage(text='休息過後，別急著進行太過劇烈的運動，用前幾天已經做過的 20 分鐘臀腿訓練來找回運動節奏吧！鍛煉下半身的肌力，不僅能讓臀腿線條變精實，還能穩定身體、提升全身平衡度，讓你的雙腿看起來更修長，身形也更柔美。'))
-            messages.append(another_service_or_not)
-            line_bot_api.reply_message(event.reply_token, messages)
-        elif '徒手健身day6' in recrive_text:
-            messages=[]
-            messages.append(TextSendMessage(text='相較於前面幾個訓練，這組 25 分鐘的 HIIT 燃脂運動的挑戰性又再更高一些，有訓練核心跟腿部的平板深蹲跳、停頓跨步蹲抬腳，以及訓練腹肌的跪姿伏地挺身、扭身平板等等，每個動作都十分精實，加上幾乎大多數的動作屬於有氧運動，做到後面真的會氣喘吁吁啊！'))
-            messages.append(another_service_or_not)
-            line_bot_api.reply_message(event.reply_token, messages)
-        elif '徒手健身day7' in recrive_text:
-            messages=[]
-            messages.append(TextSendMessage(text='來到本週訓練的最後一天，用 10 分鐘的 HIIT 運動和 15 分鐘的腹肌訓練為整週的在家運動時光畫下句點吧！10 分鐘快速燃脂的高強度全身訓練，能夠快速熱開身體，不需花太多時間就能適應運動模式。接著，搭配 15 分鐘的進階腹肌訓練，用各式變化型的捲腹運動、登山式等動作鍛煉側腹跟核心肌群，最後以平板支撐收尾，讓身體在短短的 25 分鐘內完成全身性的進階訓練。'))
-            messages.append(another_service_or_not)
-            line_bot_api.reply_message(event.reply_token, messages)
-        
+            call_introduction(event)    
 
 another_service_or_not = TemplateSendMessage(
     alt_text='Confirm template',

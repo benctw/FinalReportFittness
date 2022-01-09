@@ -6,6 +6,7 @@ import random,os, json, sqlite3
 from linebot.models import events
 from line_chatbot_api import *
 from service_actions.BMI import *
+from service_actions.fitnessmeun import call_fitnessmeun
 from service_actions.introduction import *
 from service_actions.food_bonny import *
 from service_actions.allfoodlist import *
@@ -182,7 +183,7 @@ def handle_something(event):
         # print(recrive_text)
         if '健身菜單推薦' in recrive_text:
             # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
-            call_introduction(event)
+            call_fitnessmeun(event)
         elif '新手請看這裡' in recrive_text:
             messages=[]
             messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/s4Gu433'))

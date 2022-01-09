@@ -623,9 +623,9 @@ def handle_something(event):
             messages=[]
             messages.append(TextSendMessage(text=f'你的{results[numerical_result]}在發光...你居然把自己變成了巧克力？！？'))
             messages.append(TextSendMessage(text='你是狠角色，給你100分'))
-            messages.append(StickerSendMessage(package_id=11538, sticker_id=51626498))
+            messaegs.append(StickerSendMessage(package_id=11538, sticker_id=51626498))
             messages.append(StickerSendMessage(package_id=happysticker[0], sticker_id=happysticker[1]))
-            messages.append(StickerSendMessage(package_id=11537, sticker_id=52002734))
+            messaegs.append(StickerSendMessage(package_id=11537, sticker_id=52002734))
             line_bot_api.reply_message(event.reply_token, messages)
 
         elif numerical_result == 1:

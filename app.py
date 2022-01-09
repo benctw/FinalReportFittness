@@ -198,31 +198,30 @@ def handle_something(event):
         # print(recrive_text)
         if '健身菜單推薦' in recrive_text:
             # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
-            call_introduction(event)
-        elif '新手請看這裡' in recrive_text:
+            call_fitnessmeun(event)
+        elif '健身小常識' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/s4Gu433'))
             messages.append(TextSendMessage(text='通常重訓會將多關節動作安排在一開始，因為多關節動作可以承受更大的負重，大負重才可以破壞肌肉纖維，助於肌肉的成長，也因為要大負重所以需要更專注的精神。另外較多肌肉參與可以讓訓練更有效率、消耗更多體能高。'))
             messages.append(TextSendMessage(text='訓練菜單有蠻多種分法，對新手來說可以先以前面提到的「器械訓練為主，自由訓練為輔」，可以藉由固定式器材讓自己熟悉動作運行的軌道，也可以幫助身體記憶，降低訓練時思考要練什麼的心智負擔。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '菜單攻略' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/s4Gu433'))
+            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/qdnYqkt.jpg'))
             messages.append(TextSendMessage(text='肌群:大肌群 → 小肌群\n關節:多關節 → 單關節,強度 高 → 低\n重量:重 → 輕（記得要先用輕重量暖身）'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '初級菜單' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/2a8gzJ1'))
-            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/OOTmkPR'))
+            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/hyVXO8m.jpg'))
+            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/UNcUuuO.jpg'))
             messages.append(TextSendMessage(text='最重要是一周全部練完'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)
         elif '進階菜單' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/XsuUcU9'))
-            messages.append(ImageSendMessage(original_content_url='https://imgur.com/a/3yKgRca'))
+            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/9kTI0RO.jpg'))
+            messages.append(ImageSendMessage(original_content_url='https://i.imgur.com/pPHBmnv.jpg'))
             messages.append(TextSendMessage(text='1.緩慢提高主要訓練重量。\n2.運用遞減組來增加訓練量及代謝壓力。\n3.提高訓練組數。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages)

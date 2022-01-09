@@ -184,6 +184,12 @@ def handle_something(event):
         if '健身菜單推薦' in recrive_text:
             # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
             call_fitnessmeun(event)
+        elif '健身小常識' in recrive_text:
+            messages=[]
+            messages.append(TextSendMessage(text='單關節、多關節訓練是什麼。多關節：運用一個以上的肌群與關節訓練，像深蹲、羅馬尼亞硬舉、臥推等，鍛鍊時需要較高的專注力，對於整體肌肉的發展也較好。單關節：專注在一個肌群或是單一個關節訓練，像是肱二頭彎舉、肱三頭下拉。'))
+            messages.append(another_service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+
         elif '新手請看這裡' in recrive_text:
             messages=[]
             messages.append(TextSendMessage(text='通常重訓會將多關節動作安排在一開始，因為多關節動作可以承受更大的負重，大負重才可以破壞肌肉纖維，助於肌肉的成長，也因為要大負重所以需要更專注的精神。另外較多肌肉參與可以讓訓練更有效率、消耗更多體能高。'))

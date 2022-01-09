@@ -18,10 +18,6 @@ def call_fitnessmeun(event):
                         text='健身小常識'
                         ),
                         MessageAction(
-                        label='菜單攻略',
-                        text='菜單攻略'
-                        ),
-                        MessageAction(
                         label='初級菜單',
                         text='初級菜單'
                         ),
@@ -33,9 +29,13 @@ def call_fitnessmeun(event):
                 ),
                 CarouselColumn(
                     thumbnail_image_url='https://i.imgur.com/UgTZELW.jpg',
-                    title='徒手健身',
-                    text='徒手健身',
+                    title='徒手健身1',
+                    text='徒手健身1',
                     actions=[
+                        MessageAction(
+                        label='菜單攻略',
+                        text='菜單攻略'
+                        ),
                         MessageAction(
                         label='徒手健身介紹',
                         text='徒手健身介紹'
@@ -43,7 +43,14 @@ def call_fitnessmeun(event):
                         MessageAction(
                         label='徒手健身day1',
                         text='徒手健身day1'
-                        ),
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://i.imgur.com/UgTZELW.jpg',
+                    title='徒手健身2-4',
+                    text='徒手健身2-4',
+                    actions=[
                         MessageAction(
                         label='徒手健身day2',
                         text='徒手健身day2'
@@ -55,15 +62,22 @@ def call_fitnessmeun(event):
                         MessageAction(
                         label='徒手健身day4',
                         text='徒手健身day4'
-                        ),   
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://i.imgur.com/UgTZELW.jpg',
+                    title='徒手健身5-7',
+                    text='徒手健身5-7',
+                    actions=[
                         MessageAction(
                         label='徒手健身day5',
                         text='徒手健身day5'
-                        ),  
+                        ),
                         MessageAction(
                         label='徒手健身day6',
                         text='徒手健身day6'
-                        ),   
+                        ),
                         MessageAction(
                         label='徒手健身day7',
                         text='徒手健身day7'

@@ -13,11 +13,11 @@ def call_fitnessmeun(event):
                     title='健身菜單推薦',
                     text='選擇適合自己課程',
                     actions=[
-                         MessageAction(
+                        MessageAction(
                         label='健身小常識',
                         text='健身小常識'
                         ),
-                         MessageAction(
+                        MessageAction(
                         label='菜單攻略',
                         text='菜單攻略'
                         ),
@@ -36,11 +36,11 @@ def call_fitnessmeun(event):
                     title='徒手健身',
                     text='徒手健身',
                     actions=[
-                         MessageAction(
+                        MessageAction(
                         label='徒手健身介紹',
                         text='徒手健身介紹'
                         ),
-                         MessageAction(
+                        MessageAction(
                         label='徒手健身day1',
                         text='徒手健身day1'
                         ),
@@ -67,7 +67,7 @@ def call_fitnessmeun(event):
                         MessageAction(
                         label='徒手健身day7',
                         text='徒手健身day7'
-                        ),
+                        )
                     ]
                 )
             ]

@@ -6,6 +6,7 @@ import random,os, json, sqlite3
 from linebot.models import events
 from line_chatbot_api import *
 from service_actions.BMI import *
+from service_actions.fitnessmeun import call_fitnessmeun
 from service_actions.introduction import *
 from service_actions.food_bonny import *
 from service_actions.allfoodlist import *
@@ -22,6 +23,8 @@ from PIL import Image, ImageOps
 import numpy as np
 
 # create flask server
+# Load the model
+model = load_model('keras_model.h5')
 
 app = Flask(__name__)
 
@@ -56,24 +59,6 @@ def callback():
 
 # handle msg
 import os
-# import speech_recognition as sr
-
-def transcribe(wav_path):
-    '''
-    Speech to Text by Google free API
-    language: en-US, zh-TW
-    '''
-    
-    r = sr.Recognizer()
-    with r.AudioFile(wav_path) as source:
-        audio = sr.record(source)
-    try:
-        return r.recognize_google(audio, language="zh-TW")
-    except sr.UnknownValueError:
-        print("Google Speech Recognition could not understand audio")
-    except sr.RequestError as e:
-        print("Could not request results from Google Speech Recognition service; {0}".format(e))
-    return None
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
@@ -199,7 +184,11 @@ def handle_something(event):
         if '健身菜單推薦' in recrive_text:
             # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
             call_fitnessmeun(event)
+<<<<<<< HEAD
         elif '健身小常識' in recrive_text:
+=======
+        elif '新手請看這裡' in recrive_text:
+>>>>>>> 3142764233f4949f4c8ddf94ebd2044a236cfee2
             messages=[]
             messages.append(TextSendMessage(text='通常重訓會將多關節動作安排在一開始，因為多關節動作可以承受更大的負重，大負重才可以破壞肌肉纖維，助於肌肉的成長，也因為要大負重所以需要更專注的精神。另外較多肌肉參與可以讓訓練更有效率、消耗更多體能高。'))
             messages.append(TextSendMessage(text='訓練菜單有蠻多種分法，對新手來說可以先以前面提到的「器械訓練為主，自由訓練為輔」，可以藉由固定式器材讓自己熟悉動作運行的軌道，也可以幫助身體記憶，降低訓練時思考要練什麼的心智負擔。'))
@@ -630,7 +619,7 @@ def handle_something(event):
         elif numerical_result == 1:
             messages=[]
             picture_my_goal='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmN5J1cf3n8LR9ffgln1KTXz_ECPPj83yIyg&usqp=CAU'
-            messaegs.append(StickerSendMessage(package_id=11537, sticker_id=52002747))
+            messages.append(StickerSendMessage(package_id=11537, sticker_id=52002747))
             messages.append(f'你的{results[numerical_result]}好美，gorgeous!!!')
             messages.append('給你的背100分，我超喜歡！！！')
             messages.append('跟你分享我偶像羅尼庫爾曼的背肌')
@@ -663,20 +652,7 @@ def handle_something(event):
             messages.append(TextSendMessage(text='ㄨㄚ'))
             messages.append(TextSendMessage(text='我看不出來你在哪裡...我的視力不好，金拍謝！！！'))
             messages.append(TextSendMessage(text='你可以再傳一張比較清楚/只有特定部位的照片給我'))
-
-    elif event.message.type=='audio':
-        filename_wav='temp_audio.wav'
-        filename_mp3='temp_audio.mp3'
-        message_content = line_bot_api.get_message_content(event.message.id)
-        with open(filename_mp3, 'wb') as fd:
-            for chunk in message_content.iter_content():
-                fd.write(chunk)
-        os.system(f'ffmpeg -y -i {filename_mp3} {filename_wav} -loglevel quiet')
-        text = transcribe(filename_wav)
-        # print('Transcribe:', text)
-        if '服務' in text:
-            # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
-            call_introduction(event)    
+            line_bot_api.reply_message(event.reply_token, messages)
 
 another_service_or_not = TemplateSendMessage(
     alt_text='Confirm template',

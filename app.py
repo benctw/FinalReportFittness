@@ -184,11 +184,7 @@ def handle_something(event):
         if '健身菜單推薦' in recrive_text:
             # print(url_for('static', filename='images/brown_1024.jpg', _external=True))
             call_fitnessmeun(event)
-<<<<<<< HEAD
-        elif '健身小常識' in recrive_text:
-=======
         elif '新手請看這裡' in recrive_text:
->>>>>>> 3142764233f4949f4c8ddf94ebd2044a236cfee2
             messages=[]
             messages.append(TextSendMessage(text='通常重訓會將多關節動作安排在一開始，因為多關節動作可以承受更大的負重，大負重才可以破壞肌肉纖維，助於肌肉的成長，也因為要大負重所以需要更專注的精神。另外較多肌肉參與可以讓訓練更有效率、消耗更多體能高。'))
             messages.append(TextSendMessage(text='訓練菜單有蠻多種分法，對新手來說可以先以前面提到的「器械訓練為主，自由訓練為輔」，可以藉由固定式器材讓自己熟悉動作運行的軌道，也可以幫助身體記憶，降低訓練時思考要練什麼的心智負擔。'))

@@ -36,9 +36,6 @@ def page_not_found(e):
 def page_not_found(e):
     return render_template('500.html'), 500
 
-if __name__ == "__main__":
-    app.run(host='127.0.0.1', port=5000, debug=True)
-
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
@@ -617,7 +614,7 @@ def handle_something(event):
     user_cm=user_data[3] if user_data[3] else 0
     function_handle_something(event, user_data)
 
-     if event.message.type=='text':
+    if event.message.type=='text':
         recrive_text=event.message.text
         # print(recrive_text)
         if '健身菜單推薦' in recrive_text:

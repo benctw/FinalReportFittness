@@ -270,7 +270,7 @@ def handle_something(event):
             line_bot_api.reply_message(event.reply_token, messages)  
         elif '我想知道背伸機怎麼用' in recrive_text:
             messages=[]
-            messages.append(ImageSendMessage(original_content_url='https://www.f1-recreation.com.tw/images/com_hikashop/upload/3038_483698303.jpg', preview_image_url='https://www.f1-recreation.com.tw/images/com_hikashop/upload/3038_483698303.jpg'))
+            messages.append(ImageSendMessage(original_content_url='https://www.f1-recreation.com.tw/images/com_hikashop/upload/3007_606715416.jpg', preview_image_url='https://www.f1-recreation.com.tw/images/com_hikashop/upload/3007_606715416.jpg'))
             messages.append(TextSendMessage(text='主要訓練部位:豎脊肌群。首先，依據個人需求調整背靠墊及柔軟度。坐上採好腳踏墊，將背與臀部緊靠墊子後調整重量。隨後，雙手抱胸吸氣，吐氣往後並挺胸到腰椎平行靠墊，不要過度拱腰，回來時，到槓片剩一片的距離。隨後重複吐氣往後，吸氣往前，結束時慢慢放輕即可。'))
             messages.append(another_service_or_not)
             line_bot_api.reply_message(event.reply_token, messages) 

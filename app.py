@@ -430,8 +430,9 @@ def handle_something(event):
             messages=[]
             messages.append(TextSendMessage(text='別這麼想！\n暴食和節食的惡性循環從責怪自己開始，所以當吃完美食後不應該馬上測量體重，因為吃進肚子裡的食物有重量，因此不但不準確，還會使自己不愉快。'))
             messages.append(TextSendMessage(text='以下是飽餐一頓後的小建議：\n1.多走路散步，幫助消化\n2.充足睡眠能增加瘦體素，管理食慾\n3.聚餐變成生活一部分，不害怕其影響\n4.用平常心看待飲食，使身心達到平衡'))
-            line_bot_api.reply_message(event.reply_token, messages)
             messages.append(service_or_not)
+            line_bot_api.reply_message(event.reply_token, messages)
+            
         elif '吃外食還能維持好身材嗎' in recrive_text:
             messages=[]
             messages.append(TextSendMessage(text='若您為平日較匆忙的人，也不必擔心一直吃外食會讓身材走樣，除了避免長時間久坐之外，均衡飲食的觀念非常重要，且每餐的蔬菜量最好大於肉類，並讓飲食保持多元化！'))

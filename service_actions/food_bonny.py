@@ -372,7 +372,7 @@ another_or_not= TemplateSendMessage(
                 PostbackAction(
                     label='這個很好!',
                     display_text='這樣就好，謝謝!',
-                    data='action=暫時先不用'
+                    data='action=先不用喔!'
                 )
             ]
         )

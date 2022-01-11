@@ -114,7 +114,7 @@ def recommend_choice(event):
                 CarouselColumn(
                     thumbnail_image_url='https://i.imgur.com/jA2pU6S.png',
                     title='隨機推薦',
-                    text='想選多少熱量的餐點呢?',
+                    text='點選一個進行隨機推薦!',
                     actions=[
                         PostbackAction(
                             label='份量大',
@@ -178,7 +178,7 @@ def answer_service(event):
                 CarouselColumn(
                     thumbnail_image_url='https://i.imgur.com/u8uB9Jo.png',
                     title='問題集1',
-                    text='想選多少熱量的餐點呢?',
+                    text='想知道什麼解說呢?',
                     actions=[
                         MessageAction(
                             label='蛋白質吸收率是什麼？',
@@ -198,7 +198,7 @@ def answer_service(event):
                 CarouselColumn(
                     thumbnail_image_url='https://i.imgur.com/u8uB9Jo.png',
                     title='問題集2',
-                    text='想選多少熱量的餐點呢?',
+                    text='想知道什麼解說呢?',
                     actions=[
                         MessageAction(
                             label='有段時間沒運動，身材會荒廢?',
@@ -217,7 +217,7 @@ def answer_service(event):
                 CarouselColumn(
                     thumbnail_image_url='https://i.imgur.com/O7Qh0jv.png',
                     title='問題集3-數值介紹',
-                    text='想選多少熱量的餐點呢?',
+                    text='想知道什麼解說呢?',
                     actions=[
                         MessageAction(
                             label='BMR-基礎代謝率',
